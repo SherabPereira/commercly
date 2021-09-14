@@ -20,13 +20,20 @@ require("./config")(app);
 
 // default value for title local
 const projectName = "commercly";
-const capitalized = (string) => string[0].toUpperCase() + string.slice(1).toLowerCase();
+const capitalized = (string) =>
+  string[0].toUpperCase() + string.slice(1).toLowerCase();
 
 app.locals.siteTitle = `${capitalized(projectName)}`;
 
 // 👇 Start handling routes here
 const index = require("./routes/index");
 app.use("/", index);
+
+const products = require("./routes/Products.routes");
+app.use("/products", products);
+
+const categories = require("./routes/Categories.routes");
+app.use("/categories", categories);
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
