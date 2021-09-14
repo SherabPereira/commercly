@@ -1,6 +1,7 @@
 const router = require("express").Router();
 
 const Category = require("../models/Category.model");
+const Product = require("../models/Product.model");
 
 //GET List categories
 router.get("/", (_, res, next) => {
@@ -42,9 +43,21 @@ router.get("/:id", (req, res, next) => {
 router.post("/delete/:id", (req, res, next) => {
   const { id } = req.params;
 
-  Category.findByIdAndRemove(id)
-    .then(res.redirect("/categories"))
-    .catch((err) => next(err));
+  Product.find({ category: { $eq: id } })
+    .then(async (results) => {
+      if (results.length === 0) {
+        await Category.findByIdAndRemove(id).then(res.redirect("/categories"));
+      } else {
+        req.flash(
+          "info",
+          "There are products using the this category. Category could not be deleted."
+        );
+        res.redirect("/");
+      }
+    })
+    .catch((err) =>
+      res.render("categories/categories-list", { errMessage: err.message })
+    );
 });
 
 //GET Edit category
@@ -65,7 +78,7 @@ router.post("/edit/:id", (req, res, next) => {
   const { name } = req.body;
 
   Category.findByIdAndUpdate(id, { name })
-    .then(res.redirect(`/categories/${id}`))
+    .then(res.redirect(`/categories`))
     .catch((err) => next(err));
 });
 

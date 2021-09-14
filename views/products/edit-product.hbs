@@ -1,1 +1,38 @@
-<h1>edit products</h1>
+<h2>Edit product: {{product.name}}</h2>
+
+<form action="/products/edit/{{product.id}}" method="post">
+
+  <label for="name">Name:</label><br />
+  <input type="text" id="name" name="name" value="{{product.name}}" /><br />
+
+  <label for="price">Price:</label><br />
+  <input type="text" id="price" name="price" value="{{product.price}}" /><br />
+
+  <label for="">Description:</label><br />
+
+  <textarea
+    name="description"
+    id="description"
+    cols="30"
+    rows="10"
+  >{{product.description}}
+  </textarea><br />
+
+  <label for="category">Category</label>
+  <select name="category" id="category">
+    {{#each categories}}
+        {{#ifCond id "==" ../product.category}}
+        <option value="{{id}}" selected > {{name}} </option>
+        {{else}}
+        <option value="{{id}}"> {{name}} </option>
+        {{/ifCond}}
+    {{/each}}
+  </select><br />
+
+  <label for="image">Image</label>
+  <input type="file" name="image" id="image" />
+
+  <br>
+  <button type="submit">Submit</button>
+
+</form>

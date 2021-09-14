@@ -1,7 +1,19 @@
 <h1>Categories List</h1>
 
 <ul>
-    {{#each categories}}
-    <li> Name: {{name}} id: {{_id}}</li>
-    {{/each}}
+  <hr />
+  {{#each categories}}
+    <li> Name: {{name}} </li>
+    <br>
+    <div>
+      <form action="categories/edit/{{id}}" method="get">
+        <button type="submit">Edit</button>
+      </form>
+      <form action="categories/delete/{{id}}" method="post">
+        <button type="submit">Delete</button>
+      </form>
+
+    </div>
+    <hr />
+  {{/each}}
 </ul>

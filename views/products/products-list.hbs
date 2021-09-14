@@ -3,10 +3,22 @@
 <ul>
   <hr />
   {{#each products}}
-    <li>Name: {{name}} id: {{_id}}</li>
+    <li>Name: {{name}}</li>
     <li>Price: {{price}}</li>
     <li>Description: {{description}}</li>
     <li>Category: {{category.name}}</li>
+
+    <br />
+
+    <div>
+      <form action="products/edit/{{id}}" method="get">
+        <button type="submit">Edit</button>
+      </form>
+      <form action="products/delete/{{id}}" method="post">
+        <button type="submit">Delete</button>
+      </form>
+
+    </div>
     <hr />
   {{/each}}
 </ul>

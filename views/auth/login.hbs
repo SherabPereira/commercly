@@ -1,0 +1,33 @@
+<div class="container">
+  <p class="text-center">I'm an existing customer and would like to login.</p>
+  <form method="post" class="text-center">
+
+    <input type="text" name="email" placeholder="Email address" />
+    
+    <br />
+
+    <input type="password" name="password" placeholder="Password" />
+
+    <div class="row">
+      <div>
+        <div class="remember">
+          <input name="rememberme" type="checkbox" id="rememberme" />
+          <label for="rememberme">Remember me</label>
+        </div>
+      </div>
+      <div>
+        <a href="#">Lost Password?</a>
+      </div>
+    </div>
+
+    <button type="submit" name="login">Login</button>
+    <br />
+    {{#if errorMessage}}
+      <p>{{errorMessage}}</p>
+    {{/if}}
+  </form>
+  <div class="text-center">
+    <p><strong>I'm a new customer and would like to register.</strong></p>
+    <a href="/auth/signup" class="btn" id="create-account">Create a New Account</a>
+  </div>
+</div>

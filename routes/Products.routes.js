@@ -59,8 +59,8 @@ router.get("/edit/:id", (req, res, next) => {
   const { id } = req.params;
 
   Promise.all([Product.findById(id), Category.find()])
-    .then(([product, category]) =>
-      res.render("products/edit-product", { product, category })
+    .then(([product, categories]) =>
+      res.render("products/edit-product", { product, categories })
     )
     .catch((err) => next(err));
 });
@@ -70,8 +70,8 @@ router.post("/edit/:id", (req, res, next) => {
   const { id } = req.params;
   const { name, price, description, category } = req.body;
 
-  Movie.findByIdAndUpdate(id, { name, price, description, category })
-    .then(res.redirect(`/product/${id}`))
+  Product.findByIdAndUpdate(id, { name, price, description, category })
+    .then(res.redirect(`/products/`))
     .catch((err) => next(err));
 });
 
