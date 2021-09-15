@@ -25,7 +25,7 @@ router.get("/create", (_, res, next) => {
 
 //POST create product
 router.post("/create", upload.single("image"), (req, res, next) => {
-  const { name, price, description, category } = req.body;
+  const { name, price, description, category, brand } = req.body;
 
   const image = {
     name: req.body.name,
@@ -35,7 +35,7 @@ router.post("/create", upload.single("image"), (req, res, next) => {
 
   console.log(image);
 
-  Product.create({ name, price, description, category, image })
+  Product.create({ name, price, description, category, brand, image })
     .then(async (product) => {
       await Category.findByIdAndUpdate(category, {
         $push: { products: { _id: product._id } },
@@ -77,9 +77,9 @@ router.get("/edit/:id", (req, res, next) => {
 //POST edit product
 router.post("/edit/:id", (req, res, next) => {
   const { id } = req.params;
-  const { name, price, description, category } = req.body;
+  const { name, price, description, category, brand } = req.body;
 
-  Product.findByIdAndUpdate(id, { name, price, description, category })
+  Product.findByIdAndUpdate(id, { name, price, description, category, brand })
     .then(res.redirect(`/products/`))
     .catch((err) => next(err));
 });

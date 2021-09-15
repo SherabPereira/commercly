@@ -20,6 +20,11 @@ module.exports = model(
         required: true,
         minlength: 5,
       },
+      brand: {
+        type: String,
+        maxlength: 15,
+        minlength: 2,
+      },
       category: {
         type: Schema.Types.ObjectId,
         ref: "Category",

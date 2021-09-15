@@ -1,38 +1,65 @@
-<h2 class="pt-5">Edit product: {{product.name}}</h2>
+<section
+  class="container d-flex flex-column justify-content-center align-items-center"
+  id="manage-product"
+>
+  <div class="manage-product-wrapper">
+    <h2 class="text-center text-muted">Edit product</h2>
 
-<form action="/products/edit/{{product.id}}" method="post">
+    <div class="manage-product-container">
 
-  <label for="name">Name:</label><br />
-  <input type="text" id="name" name="name" value="{{product.name}}" /><br />
+      <form
+        method="post"
+        action="/products/edit/{{product.id}}"
+        enctype="multipart/form-data"
+      >
 
-  <label for="price">Price:</label><br />
-  <input type="text" id="price" name="price" value="{{product.price}}" /><br />
+        <div class="d-flex flex-column">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" value="{{product.name}}" />
 
-  <label for="">Description:</label><br />
+          <label for="price">Price:</label>
+          <input type="number" step="any" id="price" name="price" value="{{product.price}}" />
 
-  <textarea
-    name="description"
-    id="description"
-    cols="30"
-    rows="10"
-  >{{product.description}}
-  </textarea><br />
+          <label for="brand">Brand:</label>
+          <input type="text" id="brand" name="brand" value="{{product.brand}}"/>
 
-  <label for="category">Category</label>
-  <select name="category" id="category">
-    {{#each categories}}
-        {{#ifCond id "==" ../product.category}}
-        <option value="{{id}}" selected > {{name}} </option>
-        {{else}}
-        <option value="{{id}}"> {{name}} </option>
-        {{/ifCond}}
-    {{/each}}
-  </select><br />
+          <label for="">Description:</label>
+          <textarea
+            name="description"
+            id="description"
+            cols="30"
+            rows="5"
+          >{{product.description}}</textarea>
+          
 
-  <label for="image">Image</label>
-  <input type="file" name="image" id="image" />
+          <label for="category">Category:</label>
+            <select name="category" id="category">
+              {{#each categories}}
+                  {{#ifCond id "==" ../product.category}}
+                  <option value="{{id}}" selected > {{name}} </option>
+                  {{else}}
+                  <option value="{{id}}"> {{name}} </option>
+                  {{/ifCond}}
+              {{/each}}
+            </select>
 
-  <br>
-  <button type="submit">Submit</button>
+          <label for="image">Image:</label>
+          <input type="file" name="image" id="image" />
 
-</form>
+
+        <button
+          type="submit"
+          class="btn btn-outline-secondary py-2 px-5 mt-4"
+        >Submit</button>
+
+        <div class="error mt-3">
+          {{#if errorMessage}}
+            <p>{{errorMessage}}</p>
+          {{/if}}
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</section>

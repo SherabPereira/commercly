@@ -20,8 +20,11 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: 14px;
+}
+
 body {
-  font-size: 10px;
   font-family: "AzoSans", Helvetica, Arial, sans-serif;
   padding-top: 72px;
   line-height: 2rem;
@@ -82,7 +85,7 @@ header {
 
 #login .login-wrapper, #signup .signup-wrapper {
   margin: 5rem auto auto auto;
-  font-size: 1.6em;
+  font-size: 1.3rem;
   max-width: 16rem;
 }
 
@@ -121,16 +124,59 @@ header {
   padding-top: 6rem;
 }
 
+#product-gallery .products a {
+  text-decoration: none;
+}
+
 #product-gallery .card {
   padding: 0;
-  border: none;
   border-radius: 0;
+  transition: .2s ease-in;
+}
+
+#product-gallery .card:hover {
+  transform: scale(1.03)
+}
+
+#product-gallery .card-body h3 {
+  font-size: 1.2rem;
+}
+
+#product-gallery .card-body p {
+  font-size: 1rem;
+}
+
+/*Manage product (EDIT/CREATE)*/
+
+#manage-product {
+  height: 100vh;
+}
+
+#manage-product .manage-product-wrapper {
+  margin: 3rem auto auto auto;
+}
+
+#manage-product h2 {
+  font-size: 3rem;
+  margin-bottom: 2rem;
+}
+
+#manage-product .btn {
+  font-size: 1rem;
+  background-color: white;
+  border: 3px solid;
+  border-radius: 0rem;
+}
+
+#manage-product .btn:hover {
+  background-color: #6c757d;
+  border: 3px solid #6c757d;
 }
 
 /*Footer*/
 
 footer {
-  font-size: 1.3em;
+  font-size: .9rem;
 }
 
 footer .payment-methods {
@@ -138,12 +184,24 @@ footer .payment-methods {
 }
 
 footer .social {
-  font-size: 1.1rem;
+  font-size: 1.15rem;
 }
 
 /*GENERAL*/
 
-input[type="text"], input[type="password"], input[type="date"], input[type="email"], input[type="number"], textarea {
+input[type="text"], input[type="password"], input[type="date"], input[type="email"], input[type="number"], input[type="file"], select {
+  appearance: none;
+  background-color: #fff;
+  border: 2px solid #6c757d;
+  color: rgba(0, 0, 0, 0.75);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  padding: 0.6rem 0.5rem 0.5rem 0.5rem;
+  height: 2.6rem;
+  line-height: .85rem;
+}
+
+textarea {
   appearance: none;
   background-color: #fff;
   border: 2px solid #6c757d;
@@ -152,7 +210,6 @@ input[type="text"], input[type="password"], input[type="date"], input[type="emai
   font-size: 0.9rem;
   margin: 0 0 1rem 0;
   padding: 0.5rem;
-  height: 2.5rem;
 }
 
 .error {
