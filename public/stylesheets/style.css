@@ -1,6 +1,31 @@
+@font-face {
+  font-family: "AzoSans";
+  src: url("../fonts/Azo-sans/AzoSans-Light.otf") format("opentype");
+  font-weight: lighter;
+}
+
+@font-face {
+  font-family: "AzoSans";
+  src: url("../fonts/Azo-sans/AzoSans-Regular.otf") format("opentype");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "AzoSans";
+  src: url("../fonts/Azo-sans/AzoSans-Bold.otf") format("opentype");
+  font-weight: bold;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
-  font: 10px "Lucida Grande", Helvetica, Arial, sans-serif;
-  
+  font-size: 10px;
+  font-family: "AzoSans", Helvetica, Arial, sans-serif;
+  padding-top: 72px;
+  line-height: 2rem;
+  letter-spacing: .04rem;
 }
 
 a {
@@ -8,9 +33,129 @@ a {
 }
 
 header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
   font-size: 1rem;
 }
 
 .navbar-expand-lg .navbar-nav .nav-link {
   padding: 1rem 1rem;
+  text-transform: uppercase;
+}
+
+/*Home*/
+
+#home {
+  background: url('../images/home-background.jpg') top center no-repeat;
+  background-size: cover;
+  height: calc(100vh);
+}
+
+#home .call-to-action {
+  margin-top: -15rem;
+}
+
+#home .call-to-action h1 {
+  margin-bottom: 5rem;
+  font-size: 4rem;
+}
+
+#home .call-to-action a {
+  font-size: 1.3rem;
+  background-color: white;
+  border: 3px solid;
+  border-radius: 0rem;
+}
+
+#home .call-to-action a:hover {
+  background-color: #6c757d;
+  border: 3px solid #6c757d;
+}
+
+/*Authentication*/
+
+#login, #signup {
+  height: 100vh;
+}
+
+#login .login-wrapper, #signup .signup-wrapper {
+  margin: 5rem auto auto auto;
+  font-size: 1.6em;
+  max-width: 16rem;
+}
+
+#login img, #signup img {
+  margin-bottom: 3rem;
+}
+
+#login .btn, #signup .btn {
+  font-size: 1rem;
+  background-color: white;
+  border: 3px solid;
+  border-radius: 0rem;
+}
+
+#login .btn:hover, #signup .btn:hover {
+  background-color: #6c757d;
+  border: 3px solid #6c757d;
+}
+
+#login .lost-password, #login .remember {
+  font-size: .85rem!important;
+}
+
+#login .lost-password a {
+  text-decoration: none;
+}
+
+#login form, #signup form {
+  margin-bottom: 5rem;
+}
+
+/*Shop*/
+
+#product-gallery {
+  height: 100vh;
+  padding-top: 6rem;
+}
+
+#product-gallery .card {
+  padding: 0;
+  border: none;
+  border-radius: 0;
+}
+
+/*Footer*/
+
+footer {
+  font-size: 1.3em;
+}
+
+footer .payment-methods {
+  font-size: 1.2rem;
+}
+
+footer .social {
+  font-size: 1.1rem;
+}
+
+/*GENERAL*/
+
+input[type="text"], input[type="password"], input[type="date"], input[type="email"], input[type="number"], textarea {
+  appearance: none;
+  background-color: #fff;
+  border: 2px solid #6c757d;
+  color: rgba(0, 0, 0, 0.75);
+  display: block;
+  font-size: 0.9rem;
+  margin: 0 0 1rem 0;
+  padding: 0.5rem;
+  height: 2.5rem;
+}
+
+.error {
+  color: #bb2332;
+  font-size: .8rem;
 }

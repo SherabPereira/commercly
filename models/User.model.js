@@ -4,11 +4,21 @@ module.exports = model(
   "User",
   new Schema(
     {
-      username: {
+      name: {
         type: String,
-        unique: [true, "Username already exists"],
-        trim: true,
+        minlength: 2,
       },
+      surname: {
+        type: String,
+        minlength: 2,
+      },
+      address: {
+        country: String,
+        street: String,
+        city: String,
+        zip: Number,
+      },
+      phone: String,
       email: {
         type: String,
         required: [true, "Email is required"],

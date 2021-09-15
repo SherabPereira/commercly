@@ -63,6 +63,9 @@ app.use("/products", products);
 const categories = require("./routes/Categories.routes");
 app.use("/categories", categories);
 
+const shop = require("./routes/Shop.routes");
+app.use("/shop", shop);
+
 const admin = require("./routes/Admin.routes");
 app.use("/admin", admin);
 

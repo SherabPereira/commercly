@@ -25,6 +25,11 @@ module.exports = model(
         ref: "Category",
         required: true,
       },
+      image: {
+        name: String,
+        path: String,
+        originalName: String,
+      },
     },
     {
       timestamps: true,

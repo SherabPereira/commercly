@@ -1,5 +1,6 @@
 const router = require("express").Router();
-
+const multer = require("multer");
+const upload = multer({ dest: "./public/uploads/" });
 const Product = require("../models/Product.model");
 const Category = require("../models/Category.model");
 
@@ -23,10 +24,18 @@ router.get("/create", (_, res, next) => {
 });
 
 //POST create product
-router.post("/create", (req, res, next) => {
+router.post("/create", upload.single("image"), (req, res, next) => {
   const { name, price, description, category } = req.body;
 
-  Product.create({ name, price, description, category })
+  const image = {
+    name: req.body.name,
+    path: `/uploads/${req.file.filename}`,
+    originalName: req.file.originalname,
+  };
+
+  console.log(image);
+
+  Product.create({ name, price, description, category, image })
     .then(async (product) => {
       await Category.findByIdAndUpdate(category, {
         $push: { products: { _id: product._id } },
