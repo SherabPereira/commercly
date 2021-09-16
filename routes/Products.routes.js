@@ -72,6 +72,28 @@ router.get('/filter/:id', async (req, res, next) => {
   }
 })
 
+//POST Search products by name or brand
+router.post('/search', async (req, res, next) => {
+  const { query } = req.body
+  console.log('heyyyyyyyyyyyyyyy')
+  try {
+    const products = await Product.find({
+      $or: [
+        { name: { $regex: query, $options: 'i' } },
+        { brand: { $regex: query, $options: 'i' } },
+      ],
+    })
+    const categories = await Category.find()
+
+    res.render('products/products-list', {
+      products,
+      categories,
+    })
+  } catch (err) {
+    next(err)
+  }
+})
+
 //POST delete product
 router.post('/delete/:id', (req, res, next) => {
   const { id } = req.params

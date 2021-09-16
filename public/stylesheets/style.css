@@ -359,8 +359,9 @@ input[type="search"] {
   padding: 0;
 }
 
-.search-btn:focus {
+.search-btn:focus, input[type="search"]:focus {
   box-shadow: none !important;
+  outline: none;
 }
 
 textarea {

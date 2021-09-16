@@ -29,4 +29,26 @@ router.get('/filter/:id', async (req, res, next) => {
   }
 })
 
+//POST Find products by name or brand
+router.post('/search', async (req, res, next) => {
+  const { query } = req.body
+
+  try {
+    const products = await Product.find({
+      $or: [
+        { name: { $regex: query, $options: 'i' } },
+        { brand: { $regex: query, $options: 'i' } },
+      ],
+    })
+    const categories = await Category.find()
+
+    res.render('shop/product-gallery', {
+      products,
+      categories,
+    })
+  } catch (err) {
+    next(err)
+  }
+})
+
 module.exports = router
