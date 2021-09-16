@@ -41,7 +41,7 @@ header {
   right: 0;
   left: 0;
   font-size: 1rem;
-  z-index:2;
+  z-index: 2;
 }
 
 .navbar-expand-lg .navbar-nav .nav-link {
@@ -122,7 +122,11 @@ header {
 
 #product-gallery {
   min-height: calc(100vh - 72px);
-  padding-top: 6rem;
+  padding-top: 4rem;
+}
+
+#product-gallery .topbar {
+  margin-bottom: 3rem;
 }
 
 #product-gallery .products a {
@@ -137,6 +141,11 @@ header {
 
 #product-gallery .card:hover {
   transform: scale(1.03)
+}
+
+#product-gallery h2 {
+  font-size: 3rem;
+  margin-bottom: 2rem;
 }
 
 #product-gallery .card-body h3 {
@@ -183,7 +192,7 @@ header {
 
 #products-list h2 {
   font-size: 3rem;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
   text-transform: uppercase;
 }
 
@@ -215,7 +224,6 @@ header {
   font-size: 1.2rem;
   border: 3px solid;
   border-radius: 0rem;
-  margin-bottom: 2rem;
 }
 
 #products-list .edit-btn:hover {
@@ -229,6 +237,10 @@ header {
 
 #products-list .create-btn:hover {
   border: 3px solid #198754;
+}
+
+#products-list .topbar {
+  margin-bottom: 1rem;
 }
 
 /*Edit category/ Create category )*/
@@ -271,7 +283,7 @@ header {
 
 #categories-list h2 {
   font-size: 3rem;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
   text-transform: uppercase;
 }
 
@@ -321,7 +333,7 @@ footer .social {
 
 /*GENERAL*/
 
-input[type="text"], input[type="password"], input[type="date"], input[type="email"], input[type="number"], input[type="file"], select {
+input[type="text"], input[type="password"], input[type="date"], input[type="email"], input[type="number"], input[type="file"], input[type="search"], select {
   appearance: none;
   background-color: #fff;
   border: 2px solid #6c757d;
@@ -331,6 +343,24 @@ input[type="text"], input[type="password"], input[type="date"], input[type="emai
   padding: 0.6rem 0.5rem 0.5rem 0.5rem;
   height: 2.6rem;
   line-height: .85rem;
+}
+
+input[type="search"] {
+  border: none;
+  font-size: 1.2rem;
+  border-radius: 0rem;
+  margin-bottom: 0rem;
+}
+
+.search-container {
+  border: 3px solid #6c757d;
+  height: fit-content;
+  block-size: fit-content;
+  padding: 0;
+}
+
+.search-btn:focus {
+  box-shadow: none !important;
 }
 
 textarea {

@@ -12,4 +12,21 @@ router.get('/', async (req, res, next) => {
   } catch (err) {}
 })
 
+//GET Find products of category
+router.get('/filter/:id', async (req, res, next) => {
+  const { id } = req.params
+
+  try {
+    const category = await Category.findById(id).populate('products')
+    const categories = await Category.find()
+
+    res.render('shop/product-gallery', {
+      products: category.products,
+      categories,
+    })
+  } catch (err) {
+    next(err)
+  }
+})
+
 module.exports = router

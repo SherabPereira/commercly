@@ -1,17 +1,17 @@
 <div class="container border-bottom" id="admin-menu">
   <div class="row p-5">
     <div class="col-12 d-flex flex-row justify-content-center">
-      <div class="px-3">
+      <div class="px-3 text-muted">
         <a href="/admin" class="text-reset text-decoration-none text-uppercase">Dashboard</a>
       </div>
-      <div class="px-3">
-        <a href="/products" class="text-reset text-decoration-none text-uppercase border-bottom fw-bold">Manage
+      <div class="px-3 text-muted">
+        <a href="/products" class="text-reset text-decoration-none text-uppercase border-bottom border-3 fw-bold">Manage
           Products</a>
       </div>
-      <div class="px-3">
+      <div class="px-3 text-muted">
         <a href="/categories" class="text-reset text-decoration-none text-uppercase">Manage Categories</a>
       </div>
-      <div class="px-3">
+      <div class="px-3 text-muted">
         <a href="/auth/logout" class="text-reset text-decoration-none text-uppercase">Logout</a>
       </div>
 
@@ -22,8 +22,14 @@
 <section class="container " id="products-list">
   <h2 class="text-center text-muted">Manage products</h2>
 
-  <div class="create-container">
-    <a href="/products/create" class="btn btn-outline-success create-btn "><b>+</b> Add new product</a>
+  <div class="topbar d-flex flex-row justify-content-between">
+    <div class="create-container">
+      <a href="/products/create" class="btn btn-outline-success create-btn "><b>+</b> Add new product</a>
+    </div>
+    <form class="search-container d-inline-block">
+      <input type="search" name="query" placeholder="Search a product...">
+      <button type="submit" class="btn .btn-outline-secondary search-btn"><i class="fa fa-search text-muted"></i></button>
+    </form>
   </div>
   <div class="d-flex justify-content-between">
 

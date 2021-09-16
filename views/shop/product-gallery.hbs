@@ -1,48 +1,59 @@
-<section class="container d-flex justify-content-between" id="product-gallery">
+<section class="container " id="product-gallery">
 
-  <div id="filter-container col-12 col-md-4">
+  <h2 class="text-center text-muted text-uppercase">Shop</h2>
 
-    <span class="filter-header" href="#">
-      Filter by category
-    </span>
+  <div class="topbar">
+    <form class="search-container d-inline-block">
+      <input type="search" name="query" placeholder="Search a product...">
+      <button type="submit" class="btn .btn-outline-secondary search-btn"><i
+          class="fa fa-search text-muted"></i></button>
+    </form>
+  </div>
 
-    <div class="filters-wrapper">
 
-      {{#each categories}}
-      <div class="filter-item">
-        <a class="product-filter" href="#">{{name}}</a>
-      </div>
+  <div class="d-flex flex-row justify-content-between">
+    <div id="filter-container col-12 col-md-4">
 
-      {{/each}}
+      <span class="filter-header text-uppercase border-bottom mb-2 d-inline-block" href="#">
+        Filter by category
+      </span>
 
-      <div class="clear-filters">
-        <a class="" href="/shop">Reset Filter</a>
+      <div class="filters-wrapper">
+
+        {{#each categories}}
+        <div class="filter-item">
+          <a class="product-filter" href="/shop/filter/{{id}}">{{name}}</a>
+        </div>
+        {{/each}}
+
+        <div class="clear-filters">
+          <a class="" href="/shop">Reset Filter</a>
+        </div>
+
       </div>
 
     </div>
+    <div class="products-container col-12 col-md-8">
 
-  </div>
-  <div class="products-container col-12 col-md-8">
+      <div class="products d-flex row justify-content-between gy-4 gx-5">
+        {{#each products}}
 
-    <div class="products d-flex row justify-content-between gy-4 gx-5">
-      {{#each products}}
+        <div class="product col-sm-12 col-md-6 col-lg-4 card">
+          <a href="/products/{{id}}">
+            <img src="{{image.path}}" class="w-100" alt="{{name}}" class="card-img-top" />
 
-      <div class="product col-sm-12 col-md-4 col-lg-3 card">
-        <a href="/products/{{id}}">
-          <img src="{{image.path}}" class="w-100" alt="{{name}}" class="card-img-top" />
+            <div class="card-body">
+              <h3 class="card-text text-center">{{name}}</h3>
+              <p class="description card-text text-center">{{brand}}</p>
+              <p class="price card-text text-center">{{price}} €</p>
+            </div>
+          </a>
+        </div>
 
-          <div class="card-body">
-            <h3 class="card-text text-center">{{name}}</h3>
-            <p class="description card-text text-center">{{brand}}</p>
-            <p class="price card-text text-center">{{price}} €</p>
-          </div>
-        </a>
+        {{/each}}
       </div>
-
-      {{/each}}
     </div>
-  </div>
 
   </div>
-  </div>
+
 </section>
