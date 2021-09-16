@@ -1,7 +1,25 @@
+<div class="container border-bottom" id="admin-menu">
+  <div class="row p-5">
+    <div class="col-12 d-flex flex-row justify-content-center">
+      <div class="px-3">
+        <a href="/admin" class="text-reset text-decoration-none text-uppercase">Dashboard</a>
+      </div>
+      <div class="px-3">
+        <a href="/products" class="text-reset text-decoration-none text-uppercase border-bottom fw-bold">Manage Products</a>
+      </div>
+      <div class="px-3">
+        <a href="/categories" class="text-reset text-decoration-none text-uppercase">Manage Categories</a>
+      </div>
+      <div class="px-3">
+        <a href="/auth/logout" class="text-reset text-decoration-none text-uppercase">Logout</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 <section class="container " id="products-list">
-
   <h2 class="text-center text-muted">Manage products</h2>
-
   <div class="d-flex justify-content-between">
 
     <div id="filter-container col-12 col-md-4">
@@ -32,9 +50,9 @@
 
       <div class="products d-flex row justify-content-between gy-4 gx-5">
         {{#each products}}
-        <a href="#">
-          <div class="product col-sm-12 col-md-4 col-lg-3 card">
 
+        <div class="product col-sm-12 col-md-6 col-lg-3 card">
+          <a href="/products/{{id}}">
             <img src="{{image.path}}" class="w-100" alt="{{name}}" class="card-img-top" />
 
             <div class="card-body">
@@ -43,14 +61,18 @@
               <p class="price card-text text-center">{{price}} €</p>
             </div>
 
-            <div class="card-footer d-flex justify-content-around">
-              <a href="/products/edit/{{id}}" class="btn btn-outline-info edit-btn ">Edit</a>
-              <a href="/products/delete/{{id}}" class="btn btn-outline-danger delete-btn ">Delete</a>
+            <div class="card-footer d-flex flex-column justify-content-around">
+
+              <form action="/products/edit/{{id}}" method="get" class="mb-2">
+                <button type="submit" class="btn btn-outline-info edit-btn ">Edit</button>
+              </form>
+              <form action="/products/delete/{{id}}" method="post" class="mb-0">
+                <button type="submit" class="btn btn-outline-danger delete-btn">Delete</button>
+              </form>
             </div>
+          </a>
+        </div>
 
-          </div>
-
-        </a>
         {{/each}}
       </div>
     </div>

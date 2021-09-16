@@ -1,165 +1,135 @@
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>{{siteTitle}}</title>
-    <link rel="shortcut icon" href="/images/favicon.ico" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
-      integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-      integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link rel="stylesheet" href="/stylesheets/style.css" />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>{{siteTitle}}</title>
+  <link rel="shortcut icon" href="/images/favicon.ico" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+    integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+</head>
 
-  <body>
+<body>
 
-    <header class="border-bottom">
+  <header class="border-bottom">
 
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
 
-          <a href="/" class="navbar-brand">
-            <img
-              src="/images/logo.png"
-              alt="logo"
-              width="40"
-              height="40"
-              class="d-inline-block"
-            />
-            <span
-              class="site-header-title text-muted fw-bold align-text-top"
-            >{{siteTitle}}</span>
-          </a>
+        <a href="/" class="navbar-brand">
+          <img src="/images/logo.png" alt="logo" width="40" height="40" class="d-inline-block" />
+          <span class="site-header-title text-muted fw-bold align-text-top">{{siteTitle}}</span>
+        </a>
 
-          <div class="d-flex justify-content-end" id="navbar-menu">
-            <div class="navbar-nav">
-              <a class="nav-link" href="/shop">Shop</a>
-              <a class="nav-link" href="#">About us</a>
-              <a class="nav-link" href="/auth/login">My account</a>
-              <a class="nav-link" href="/admin">Admin</a>
-              <a class="nav-link" href="/client">Client</a>
-              <a class="nav-link" href="#">
-                <i class="fas fa-shopping-cart"></i>
-                <span id="cart-count"> 0 </span>
+        <div class="d-flex justify-content-end" id="navbar-menu">
+          <div class="navbar-nav">
+            <a class="nav-link" href="/shop">Shop</a>
+            <a class="nav-link" href="#">About us</a>
+            <a class="nav-link" href="/auth/login">My account</a>
+            <a class="nav-link" href="/admin">Admin</a>
+            <a class="nav-link" href="/client">Client</a>
+            <a class="nav-link" href="#">
+              <i class="fas fa-shopping-cart"></i>
+              <span id="cart-count"> 0 </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+  </header>
+
+  {{{body}}}
+
+  <footer class="text-center text-lg-start bg-light text-muted">
+    <section class="border-top">
+      <div class="container text-center text-md-start pt-5">
+        <div class="row mt-3">
+
+          <div class="col-md-5 col-lg-4 col-xl-3 mx-auto mb-4 d-flex flex-column align-items-center">
+            <h6 class="text-uppercase fw-bold mb-4">
+              Useful links
+            </h6>
+            <p>
+              <a href="#!" class="text-reset">Privacy policy</a>
+            </p>
+            <p>
+              <a href="#!" class="text-reset">Terms & conditions</a>
+            </p>
+            <p>
+              <a href="#!" class="text-reset">Shipping & Returns</a>
+            </p>
+            <p>
+              <a href="#!" class="text-reset">Contact us</a>
+            </p>
+          </div>
+
+          <div class="col-md-2 col-lg-4 col-xl-3 mx-auto mb-4">
+
+            <h6 class="text-uppercase fw-bold mb-4 text-center">
+              Social
+            </h6>
+
+            <div class="d-flex social justify-content-around">
+              <a href="" class="text-reset">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="" class="text-reset">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="" class="text-reset">
+                <i class="fab fa-google"></i>
+              </a>
+              <a href="" class="text-reset">
+                <i class="fab fa-instagram"></i>
               </a>
             </div>
+
           </div>
-        </div>
-      </nav>
-
-    </header>
-
-    {{{body}}}
-
-    <footer class="text-center text-lg-start bg-light text-muted">
-      <section class="">
-        <div class="container text-center text-md-start pt-5 border-top">
-          <div class="row mt-3">
-
-            <div
-              class="col-md-5 col-lg-4 col-xl-3 mx-auto mb-4 d-flex flex-column align-items-center"
-            >
-              <h6 class="text-uppercase fw-bold mb-4">
-                Useful links
-              </h6>
+          <div class="col-md-5 col-lg-4 col-xl-3 mx-auto mb-md-0 mb-4 contact">
+            <h6 class="text-uppercase fw-bold mb-4 text-center">
+              Contact
+            </h6>
+            <div class="ps-md-5">
+              <p><i class="fas fa-home me-3"></i>
+                C/ Libertad 5, 08470, Barcelona</p>
               <p>
-                <a href="#!" class="text-reset">Privacy policy</a>
+                <i class="fas fa-envelope me-3"></i>
+                info@example.com
               </p>
-              <p>
-                <a href="#!" class="text-reset">Terms & conditions</a>
-              </p>
-              <p>
-                <a href="#!" class="text-reset">Shipping & Returns</a>
-              </p>
-              <p>
-                <a href="#!" class="text-reset">Contact us</a>
-              </p>
+              <p><i class="fas fa-phone me-3"></i> + 34 540 325 120</p>
+              <p><i class="fas fa-print me-3"></i> + 34 340 331 300</p>
             </div>
-
-            <div class="col-md-2 col-lg-4 col-xl-3 mx-auto mb-4">
-
-              <h6 class="text-uppercase fw-bold mb-4 text-center">
-                Social
-              </h6>
-
-              <div class="d-flex social justify-content-around">
-                <a href="" class="text-reset">
-                  <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="" class="text-reset">
-                  <i class="fab fa-twitter"></i>
-                </a>
-                <a href="" class="text-reset">
-                  <i class="fab fa-google"></i>
-                </a>
-                <a href="" class="text-reset">
-                  <i class="fab fa-instagram"></i>
-                </a>
-              </div>
-
-            </div>
-            <div
-              class="col-md-5 col-lg-4 col-xl-3 mx-auto mb-md-0 mb-4 contact"
-            >
-              <h6 class="text-uppercase fw-bold mb-4 text-center">
-                Contact
-              </h6>
-              <div class="ps-md-5">
-                <p><i class="fas fa-home me-3"></i>
-                  C/ Libertad 5, 08470, Barcelona</p>
-                <p>
-                  <i class="fas fa-envelope me-3"></i>
-                  info@example.com
-                </p>
-                <p><i class="fas fa-phone me-3"></i> + 34 540 325 120</p>
-                <p><i class="fas fa-print me-3"></i> + 34 340 331 300</p>
-              </div>
-            </div>
-
           </div>
 
         </div>
-      </section>
-      <section
-        class="d-flex justify-content-center justify-content-center p-4 border-top border-bottom"
-      >
-        <div class="payment-methods">
-          <span><i class="fab fa-bitcoin mx-4"></i></span>
-          <span><i class="fab fa-cc-visa mx-4"></i></span>
-          <span><i class="fab fa-cc-mastercard mx-4"></i></span>
-        </div>
 
-      </section>
-      <div
-        class="text-center p-4"
-        style="background-color: rgba(0, 0, 0, 0.05);"
-      >
-        © 2021 Copyright:
-        <a
-          class="text-reset fw-bold"
-          href="https://mdbootstrap.com/"
-        >Commercly</a>
+      </div>
+    </section>
+    <section class="d-flex justify-content-center justify-content-center p-4 border-top border-bottom">
+      <div class="payment-methods">
+        <span><i class="fab fa-bitcoin mx-4"></i></span>
+        <span><i class="fab fa-cc-visa mx-4"></i></span>
+        <span><i class="fab fa-cc-mastercard mx-4"></i></span>
       </div>
 
-    </footer>
+    </section>
+    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+      © 2021 Copyright:
+      <a class="text-reset fw-bold" href="https://mdbootstrap.com/">Commercly</a>
+    </div>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
-      crossorigin="anonymous"
-    ></script>
-    <script src="/js/script.js"></script>
-  </body>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+    crossorigin="anonymous"></script>
+  <script src="/js/script.js"></script>
+</body>
 
 </html>

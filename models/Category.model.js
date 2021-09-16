@@ -1,21 +1,22 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model } = require('mongoose')
 
 module.exports = model(
-  "Category",
+  'Category',
   new Schema(
     {
       name: {
         type: String,
         minlength: 3,
-        required: true
+        required: true,
       },
+      description: String,
       products: {
         type: [Schema.Types.ObjectId],
-        ref: "Product",
+        ref: 'Product',
       },
     },
     {
       timestamps: true,
-    }
-  )
-);
+    },
+  ),
+)

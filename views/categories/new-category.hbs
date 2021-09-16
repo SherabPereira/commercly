@@ -1,7 +1,30 @@
-<h1 class="pt-5">New Category</h1>
+<section class="container d-flex flex-column justify-content-center align-items-center" id="create-category">
+  <div class="create-category-wrapper">
+    <h2 class="text-center text-muted text-uppercase">Create category</h2>
 
-<form action="/categories/create" method="post">
-  <label for="name">Name:</label>
-  <input type="text" id="name" name="name" />
-  <button type="submit">Submit</button>
-</form>
+    <div class="create-category-container">
+
+      <form method="post" action="/categories/create">
+
+        <div class="d-flex flex-column">
+
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" />
+
+          <label for="">Description:</label>
+          <textarea name="description" id="description" cols="30" rows="5"></textarea>
+
+
+          <button type="submit" class="btn btn-outline-secondary py-2 px-5 mt-4">Submit</button>
+
+          <div class="error mt-3">
+            {{#if errorMessage}}
+            <p>{{errorMessage}}</p>
+            {{/if}}
+          </div>
+
+      </form>
+
+    </div>
+  </div>
+</section>

@@ -1,19 +1,52 @@
-<h1 class="pt-5">Categories List</h1>
-
-<ul>
-  <hr />
-  {{#each categories}}
-    <li> Name: {{name}} </li>
-    <br>
-    <div>
-      <form action="categories/edit/{{id}}" method="get">
-        <button type="submit">Edit</button>
-      </form>
-      <form action="categories/delete/{{id}}" method="post">
-        <button type="submit">Delete</button>
-      </form>
+<div class="container border-bottom" id="admin-menu">
+  <div class="row p-5">
+    <div class="col-12 d-flex flex-row justify-content-center">
+      <div class="px-3">
+        <a href="/admin" class="text-reset text-decoration-none text-uppercase">Dashboard</a>
+      </div>
+      <div class="px-3">
+        <a href="/products" class="text-reset text-decoration-none text-uppercase">Manage Products</a>
+      </div>
+      <div class="px-3">
+        <a href="/categories" class="text-reset text-decoration-none text-uppercase border-bottom fw-bold">Manage Categories</a>
+      </div>
+      <div class="px-3">
+        <a href="/auth/logout" class="text-reset text-decoration-none text-uppercase">Logout</a>
+      </div>
 
     </div>
-    <hr />
-  {{/each}}
-</ul>
+  </div>
+</div>
+
+<section class="container" id="categories-list">
+  <h2 class=" text-center text-muted">Manage categories</h2>
+
+
+  <div class="create-container ps-3">
+    <a href="/categories/create" class="btn btn-outline-success create-btn "><b>+</b> Add new category</a>
+  </div>
+
+  <div class="categories-wrapper row row-cols-1 row-cols-md-3 row-cols-lg-5 g-3 g-lg-4 mb-5">
+    {{#each categories}}
+    <div class="card-wrapper">
+      <div class="card text-center">
+        <div class="card-header text-uppercase fw-bold text-muted">
+          {{name}}
+        </div>
+        <div class="card-body">
+          {{description}}
+        </div>
+        <div class="card-footer text-muted">
+          <form action="categories/edit/{{id}}" method="get">
+            <button type="submit" class="btn btn-outline-info edit-btn ">Edit</button>
+          </form>
+          <form action="categories/delete/{{id}}" method="post">
+            <button type="submit" class="btn btn-outline-danger delete-btn">Delete</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+
+</section>
