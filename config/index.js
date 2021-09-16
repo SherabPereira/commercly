@@ -52,7 +52,7 @@ module.exports = (app) => {
   //   favicon(path.join(__dirname, "..", "public", "images", "favicon.ico"))
   // );
 
-  app.set("trust proxy", 1);
+  // app.set("trust proxy", 1);
 
   app.use(
     session({

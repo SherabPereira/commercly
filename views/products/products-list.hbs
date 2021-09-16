@@ -1,24 +1,61 @@
-<h1 class="pt-5" >Products list</h1>
+<section class="container " id="products-list">
 
-<ul>
-  <hr />
-  {{#each products}}
-    <li>Name: {{name}}</li>
-    <li>Price: {{price}}</li>
-    <li>Description: {{description}}</li>
-    <li>Category: {{category.name}}</li>
+  <h2 class="text-center text-muted">Manage products</h2>
 
-    <br />
+  <div class="d-flex justify-content-between">
 
-    <div>
-      <form action="products/edit/{{id}}" method="get">
-        <button type="submit">Edit</button>
-      </form>
-      <form action="products/delete/{{id}}" method="post">
-        <button type="submit">Delete</button>
-      </form>
+    <div id="filter-container col-12 col-md-4">
+      <div class="create-container">
+        <a href="/products/create" class="btn btn-outline-success create-btn "><b>+</b> Add new product</a>
+      </div>
+      <span class="filter-header" href="#">
+        Filter by category
+      </span>
+
+      <div class="filters-wrapper">
+
+        {{#each categories}}
+        <div class="filter-item">
+          <a class="product-filter" href="#">{{name}}</a>
+        </div>
+
+        {{/each}}
+
+        <div class="clear-filters">
+          <a class="" href="/shop">Reset Filter</a>
+        </div>
+
+      </div>
 
     </div>
-    <hr />
-  {{/each}}
-</ul>
+    <div class="products-container col-12 col-md-8">
+
+      <div class="products d-flex row justify-content-between gy-4 gx-5">
+        {{#each products}}
+        <a href="#">
+          <div class="product col-sm-12 col-md-4 col-lg-3 card">
+
+            <img src="{{image.path}}" class="w-100" alt="{{name}}" class="card-img-top" />
+
+            <div class="card-body">
+              <h3 class="card-text text-center">{{name}}</h3>
+              <h5 class="description card-text text-center">{{brand}}</h5>
+              <p class="price card-text text-center">{{price}} €</p>
+            </div>
+
+            <div class="card-footer d-flex justify-content-around">
+              <a href="/products/edit/{{id}}" class="btn btn-outline-info edit-btn ">Edit</a>
+              <a href="/products/delete/{{id}}" class="btn btn-outline-danger delete-btn ">Delete</a>
+            </div>
+
+          </div>
+
+        </a>
+        {{/each}}
+      </div>
+    </div>
+
+  </div>
+
+
+</section>

@@ -146,31 +146,93 @@ header {
   font-size: 1rem;
 }
 
-/*Manage product (EDIT/CREATE)*/
+/*Edit product/ Create product )*/
 
-#manage-product {
+#create-product, #edit-product {
   height: 100vh;
 }
 
-#manage-product .manage-product-wrapper {
+#create-product .create-product-wrapper, #edit-product .edit-product-wrapper {
   margin: 3rem auto auto auto;
 }
 
-#manage-product h2 {
+#create-product h2, #edit-product h2 {
   font-size: 3rem;
   margin-bottom: 2rem;
 }
 
-#manage-product .btn {
+#create-product .btn, #edit-product .btn {
   font-size: 1rem;
   background-color: white;
   border: 3px solid;
   border-radius: 0rem;
 }
 
-#manage-product .btn:hover {
+#create-product .btn:hover, #edit-product .btn:hover {
   background-color: #6c757d;
   border: 3px solid #6c757d;
+}
+
+/*Manage Products*/
+
+#products-list {
+  height: 100vh;
+  padding-top: 3rem;
+}
+
+#products-list h2 {
+  font-size: 3rem;
+  margin-bottom: 4rem;
+  text-transform: uppercase;
+}
+
+#products-list .card {
+  padding: 0;
+  border-radius: 0;
+}
+
+#products-list .card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+#products-list .card h5 {
+  margin: 1.5rem 0;
+}
+
+#products-list .products a {
+  text-decoration: none;
+}
+
+#products-list .card-body p {
+  font-size: 1.7rem;
+}
+
+#products-list .edit-btn, #products-list .delete-btn {
+  font-size: 1rem;
+  border: 3px solid;
+  border-radius: 0rem;
+  width: 47%;
+}
+
+#products-list .create-btn {
+  font-size: 1.2rem;
+  border: 3px solid;
+  border-radius: 0rem;
+  margin-bottom: 2rem;
+}
+
+#products-list .edit-btn:hover {
+  color: white;
+  border: 3px solid #0dcaf0;
+}
+
+#products-list .delete-btn:hover {
+  border: 3px solid #dc3545;
+}
+
+#products-list .create-btn:hover {
+  border: 3px solid #198754;
 }
 
 /*Footer*/
