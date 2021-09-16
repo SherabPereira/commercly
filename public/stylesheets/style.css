@@ -191,21 +191,16 @@ header {
   border-radius: 0;
 }
 
-#products-list .card h3 {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
+#products-list .card-body h3 {
+  font-size: 1.2rem;
 }
 
-#products-list .card h5 {
-  margin: 1.5rem 0;
+#products-list .card-body p {
+  font-size: 1rem;
 }
 
 #products-list .products a {
   text-decoration: none;
-}
-
-#products-list .card-body p {
-  font-size: 1.7rem;
 }
 
 #products-list .edit-btn, #products-list .delete-btn {
