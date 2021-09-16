@@ -1,10 +1,10 @@
 const router = require('express').Router()
-
 const Category = require('../models/Category.model')
 const Product = require('../models/Product.model')
+const { isAdmin } = require('../middleware/route-guard')
 
 //GET List categories
-router.get('/', (_, res, next) => {
+router.get('/', isAdmin, (_, res, next) => {
   Category.find()
     .then((categories) => {
       res.render('categories/categories-list', { categories: categories })
@@ -13,12 +13,12 @@ router.get('/', (_, res, next) => {
 })
 
 //GET create category
-router.get('/create', (_, res, next) => {
+router.get('/create', isAdmin, (_, res, next) => {
   res.render('categories/new-category')
 })
 
 //POST create category
-router.post('/create', (req, res, next) => {
+router.post('/create', isAdmin, (req, res, next) => {
   const { name, description } = req.body
 
   Category.create({ name, description })
@@ -55,7 +55,7 @@ router.post('/search', async (req, res, next) => {
 })
 
 //POST delete category // Check if category products is empty, otherwise need warning to delete the products associated first
-router.post('/delete/:id', (req, res, next) => {
+router.post('/delete/:id', isAdmin, (req, res, next) => {
   const { id } = req.params
 
   Product.find({ category: { $eq: id } })
@@ -76,7 +76,7 @@ router.post('/delete/:id', (req, res, next) => {
 })
 
 //GET Edit category
-router.get('/edit/:id', (req, res, next) => {
+router.get('/edit/:id', isAdmin, (req, res, next) => {
   const { id } = req.params
 
   Category.findById(id)
@@ -88,7 +88,7 @@ router.get('/edit/:id', (req, res, next) => {
 })
 
 //POST edit product
-router.post('/edit/:id', (req, res, next) => {
+router.post('/edit/:id', isAdmin, (req, res, next) => {
   const { id } = req.params
   const { name, description } = req.body
 

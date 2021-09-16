@@ -3,9 +3,11 @@ const multer = require('multer')
 const upload = multer({ dest: './public/uploads/' })
 const Product = require('../models/Product.model')
 const Category = require('../models/Category.model')
+const { isAdmin } = require('../middleware/route-guard')
+const fs = require('fs')
 
 //GET List products
-router.get('/', async (_, res, next) => {
+router.get('/', isAdmin, async (_, res, next) => {
   try {
     const products = await Product.find().populate('category')
     const categories = await Category.find()
@@ -16,7 +18,7 @@ router.get('/', async (_, res, next) => {
 })
 
 //GET create product
-router.get('/create', (_, res, next) => {
+router.get('/create', isAdmin, (_, res, next) => {
   Category.find()
     .then((categories) => {
       res.render('products/new-product', { categories: categories })
@@ -25,16 +27,15 @@ router.get('/create', (_, res, next) => {
 })
 
 //POST create product
-router.post('/create', upload.single('image'), (req, res, next) => {
+router.post('/create', isAdmin, upload.single('image'), (req, res, next) => {
   const { name, price, description, category, brand } = req.body
 
   const image = {
-    name: req.body.name,
-    path: `/uploads/${req.file.filename}`,
     originalName: req.file.originalname,
+    path: `/uploads/${req.file.filename}`,
   }
 
-  console.log(image)
+  //req.file.mimetype  image/jpg  image/png
 
   Product.create({ name, price, description, category, brand, image })
     .then(async (product) => {
@@ -94,7 +95,7 @@ router.post('/search', async (req, res, next) => {
 })
 
 //POST delete product
-router.post('/delete/:id', (req, res, next) => {
+router.post('/delete/:id', isAdmin, (req, res, next) => {
   const { id } = req.params
 
   Product.findByIdAndRemove(id)
@@ -103,7 +104,7 @@ router.post('/delete/:id', (req, res, next) => {
 })
 
 //GET Edit product
-router.get('/edit/:id', (req, res, next) => {
+router.get('/edit/:id', isAdmin, (req, res, next) => {
   const { id } = req.params
 
   Promise.all([Product.findById(id), Category.find()])
@@ -114,13 +115,43 @@ router.get('/edit/:id', (req, res, next) => {
 })
 
 //POST edit product
-router.post('/edit/:id', (req, res, next) => {
-  const { id } = req.params
-  const { name, price, description, category, brand } = req.body
+router.post(
+  '/edit/:id',
+  isAdmin,
+  upload.single('image'),
+  async (req, res, next) => {
+    const { id } = req.params
+    const { name, price, description, category, brand } = req.body
 
-  Product.findByIdAndUpdate(id, { name, price, description, category, brand })
-    .then(res.redirect(`/products/`))
-    .catch((err) => next(err))
-})
+    const product = await Product.findById(id)
+    const path = __dirname + '/../public' + product.image.path
+
+    try {
+      fs.unlink(path, (err) => {
+        if (err) {
+          next(err)
+        }
+      })
+
+      const image = {
+        originalName: req.file.originalname,
+        path: `/uploads/${req.file.filename}`,
+      }
+
+      await Product.findByIdAndUpdate(id, {
+        name,
+        price,
+        description,
+        category,
+        brand,
+        image,
+      })
+
+      res.redirect(`/products/`)
+    } catch (err) {
+      next(err)
+    }
+  },
+)
 
 module.exports = router

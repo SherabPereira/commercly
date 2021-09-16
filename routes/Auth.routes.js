@@ -64,11 +64,11 @@ router.post('/signup', (req, res) => {
       })
       .then((user) => {
         // Bind the user to the session object 
-        req.session.user = user
+        req.session.currentUser = user
 
         //If user is admin redirect to admin panel else to user panel.
         if (user.isAdmin) return res.redirect('/admin')
-        else return res.redirect('/client')
+        else return res.redirect('/customer')
       })
       .catch((error) => {
         console.log(error.message)
@@ -130,13 +130,13 @@ router.post('/login', (req, res, next) => {
             .render('auth/login', { errorMessage: 'Wrong credentials.' })
         }
         /*debug*/
-        req.session.user = user
+        req.session.currentUser = user
 
-        console.log(req.session.user, 'login')
+        console.log(req.session.currentUser, 'login')
 
         //If user is admin redirect to admin panel else to user panel.
         if (user.isAdmin) return res.redirect('/admin')
-        else return res.redirect('/client')
+        else return res.redirect('/customer')
 
         // req.session.user = user._id; // ! better and safer but in this case we saving the entire user object
       })

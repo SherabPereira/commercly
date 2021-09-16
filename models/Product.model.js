@@ -1,7 +1,7 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model } = require('mongoose')
 
 module.exports = model(
-  "Product",
+  'Product',
   new Schema(
     {
       name: {
@@ -27,17 +27,16 @@ module.exports = model(
       },
       category: {
         type: Schema.Types.ObjectId,
-        ref: "Category",
+        ref: 'Category',
         required: true,
       },
       image: {
-        name: String,
-        path: String,
         originalName: String,
+        path: String,
       },
     },
     {
       timestamps: true,
-    }
-  )
-);
+    },
+  ),
+)
