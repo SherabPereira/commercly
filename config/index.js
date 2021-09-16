@@ -52,18 +52,18 @@ module.exports = (app) => {
   //   favicon(path.join(__dirname, "..", "public", "images", "favicon.ico"))
   // );
 
-  // app.set("trust proxy", 1);
+  app.set("trust proxy", 1);
 
   app.use(
     session({
-      secret: process.env.SESSION_SECRET,
+      secret: process.env.SESSION_SECRET || 'defaultValue', /*debug*/ 
       resave: true,
       saveUninitialized: false,
       cookie: {
         sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
         secure: process.env.NODE_ENV === "production",
         httpOnly: true,
-        maxAge: 60000,
+        maxAge: 60 * 1000 * 60 * 3, //3 hours
       },
       store: MongoStore.create({
         mongoUrl: process.env.DB_REMOTE,

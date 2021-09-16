@@ -1,19 +1,21 @@
 const router = require('express').Router()
 const mongoose = require('mongoose')
 const bcryptjs = require('bcryptjs')
-const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard.js')
+const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard')
 const User = require('../models/User.model')
 
 const saltRounds = 10
+
+//GET USER DASHBOARD
+
+/*{ user: req.session.currentUser }*/
 
 router.get('/signup', isLoggedOut, (req, res) => {
   res.render('auth/signup')
 })
 
-router.post('/signup', isLoggedOut, (req, res) => {
+router.post('/signup', (req, res) => {
   const { password, email, token } = req.body
-
-  console.log(token, "<<<<<<<<<<<<<<<<<<<<<<")
 
   if (!email) {
     return res
@@ -32,7 +34,7 @@ router.post('/signup', isLoggedOut, (req, res) => {
 
   // Search the database for a user with the email submitted in the form
   User.findOne({ email }).then((found) => {
-    // If the user is found, send the message email is taken
+    // If the email is found, send the message email is taken
     if (found) {
       return res
         .status(400)
@@ -61,9 +63,12 @@ router.post('/signup', isLoggedOut, (req, res) => {
         }
       })
       .then((user) => {
-        // Bind the user to the session object
+        // Bind the user to the session object 
         req.session.user = user
-        res.redirect('/')
+
+        //If user is admin redirect to admin panel else to user panel.
+        if (user.isAdmin) return res.redirect('/admin')
+        else return res.redirect('/client')
       })
       .catch((error) => {
         console.log(error.message)
@@ -86,10 +91,11 @@ router.post('/signup', isLoggedOut, (req, res) => {
 })
 
 router.get('/login', isLoggedOut, (req, res) => {
+  console.log(isLoggedOut)
   res.render('auth/login')
 })
 
-router.post('/login', isLoggedOut, (req, res, next) => {
+router.post('/login', (req, res, next) => {
   const { email, password } = req.body
 
   if (!email) {
@@ -125,6 +131,8 @@ router.post('/login', isLoggedOut, (req, res, next) => {
         }
         /*debug*/
         req.session.user = user
+
+        console.log(req.session.user, 'login')
 
         //If user is admin redirect to admin panel else to user panel.
         if (user.isAdmin) return res.redirect('/admin')

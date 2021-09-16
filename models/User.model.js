@@ -1,7 +1,7 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model } = require('mongoose')
 
 module.exports = model(
-  "User",
+  'User',
   new Schema(
     {
       name: {
@@ -19,10 +19,11 @@ module.exports = model(
         zip: Number,
       },
       phone: String,
+      username: String,
       email: {
         type: String,
-        required: [true, "Email is required"],
-        match: [/^\S+@\S+\.\S+$/, "Please use a valid email address."],
+        required: [true, 'Email is required'],
+        match: [/^\S+@\S+\.\S+$/, 'Please use a valid email address.'],
         unique: true,
         lowercase: true,
         trim: true,
@@ -35,6 +36,6 @@ module.exports = model(
     },
     {
       timestamps: true,
-    }
-  )
-);
+    },
+  ),
+)
