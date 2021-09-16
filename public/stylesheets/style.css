@@ -139,6 +139,10 @@ header {
   transition: .2s ease-in;
 }
 
+#product-gallery .card a {
+  color: black!important;
+}
+
 #product-gallery .card:hover {
   transform: scale(1.03)
 }
@@ -154,6 +158,10 @@ header {
 
 #product-gallery .card-body p {
   font-size: 1rem;
+}
+
+#product-gallery .filters-wrapper a {
+  text-decoration: none;
 }
 
 /*Edit product/ Create product )*/
@@ -201,6 +209,10 @@ header {
   border-radius: 0;
 }
 
+#products-list .card a {
+  color: black!important;
+}
+
 #products-list .card-body h3 {
   font-size: 1.2rem;
 }
@@ -241,6 +253,10 @@ header {
 
 #products-list .topbar {
   margin-bottom: 1rem;
+}
+
+#products-list .filters-wrapper a {
+  text-decoration: none;
 }
 
 /*Edit category/ Create category )*/
@@ -315,6 +331,34 @@ header {
 
 #categories-list .create-btn:hover {
   border: 3px solid #198754;
+}
+
+/* User dashboard*/
+
+#user-dashboard .dashboard-info-wrapper {
+  padding: 9rem 25rem;
+}
+
+#user-dashboard .dashboard-info-wrapper p {
+  font-size: 1.3rem;
+}
+
+#user-dashboard .dashboard-info-wrapper a {
+  text-decoration: none;
+}
+
+/* Admin dashboard*/
+
+#admin-dashboard .dashboard-info-wrapper {
+  padding: 9rem 25rem;
+}
+
+#admin-dashboard .dashboard-info-wrapper p {
+  font-size: 1.3rem;
+}
+
+#admin-dashboard .dashboard-info-wrapper a {
+  text-decoration: none;
 }
 
 /*Footer*/

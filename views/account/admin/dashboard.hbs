@@ -1,19 +1,40 @@
-<div class="container border-bottom admin-menu">
-  <div class="row p-5">
-    <div class="col-12 d-flex flex-row justify-content-center">
-      <div class="px-3 text-muted">
-        <a href="/admin" class="text-reset text-decoration-none text-uppercase border-bottom border-3 fw-bold">Dashboard</a>
-      </div>
-      <div class="px-3 text-muted">
-        <a href="/products" class="text-reset text-decoration-none text-uppercase">Manage Products</a>
-      </div>
-      <div class="px-3 text-muted">
-        <a href="/categories" class="text-reset text-decoration-none text-uppercase">Manage Categories</a>
-      </div>
-      <div class="px-3 text-muted">
-        <a href="/auth/logout" class="text-reset text-decoration-none text-uppercase">Logout</a>
-      </div>
+<section id="admin-dashboard" class="container">
 
+  <div class="container border-bottom admin-menu">
+    <div class="row p-5">
+      <div class="col-12 d-flex flex-row justify-content-center">
+        <div class="px-3 text-muted">
+          <a href="/admin"
+            class="text-reset text-decoration-none text-uppercase border-bottom border-3 fw-bold">Dashboard</a>
+        </div>
+        <div class="px-3 text-muted">
+          <a href="/products" class="text-reset text-decoration-none text-uppercase">Manage Products</a>
+        </div>
+        <div class="px-3 text-muted">
+          <a href="/categories" class="text-reset text-decoration-none text-uppercase">Manage Categories</a>
+        </div>
+        <div class="px-3 text-muted">
+          <a href="#" class="text-reset text-decoration-none text-uppercase">Account details</a>
+        </div>
+        <div class="px-3 text-muted">
+          <a href="/auth/logout" class="text-reset text-decoration-none text-uppercase">Logout</a>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+
+  <div class="dashboard-info-wrapper text-muted">
+    <div class="d-flex flex-column justify-content-center align-items-center">
+      <p>
+        Hello <strong>Insert username</strong> (not <strong>insert username</strong>?
+        <a href="/auth/logout">Log out</a>)
+      </p>
+      <p>
+        From your account dashboard you can manage your <a href="/products">products</a>
+        , manage your <a href="/categories">categories</a>,
+        and <a href="#">edit your password and account details</a>.
+      </p>
+    </div>
+  </div>
+
+</section>

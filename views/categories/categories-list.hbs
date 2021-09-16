@@ -8,7 +8,11 @@
         <a href="/products" class="text-reset text-decoration-none text-uppercase">Manage Products</a>
       </div>
       <div class="px-3 text-muted">
-        <a href="/categories" class="text-reset text-decoration-none text-uppercase border-bottom border-3 fw-bold">Manage Categories</a>
+        <a href="/categories"
+          class="text-reset text-decoration-none text-uppercase border-bottom border-3 fw-bold">Manage Categories</a>
+      </div>
+      <div class="px-3 text-muted">
+        <a href="#" class="text-reset text-decoration-none text-uppercase">Account details</a>
       </div>
       <div class="px-3 text-muted">
         <a href="/auth/logout" class="text-reset text-decoration-none text-uppercase">Logout</a>
@@ -21,9 +25,23 @@
 <section class="container" id="categories-list">
   <h2 class=" text-center text-muted">Manage categories</h2>
 
-  <div class="create-container ps-3">
-    <a href="/categories/create" class="btn btn-outline-success create-btn "><b>+</b> Add new category</a>
+
+
+  <div class="topbar d-flex flex-row justify-content-between">
+    <form class="search-container d-inline-block" action="/categories/search" method="post">
+      <input type="search" name="query" placeholder="Search a category...">
+      <button type="submit" class="btn .btn-outline-secondary search-btn"><i
+          class="fa fa-search text-muted"></i></button>
+    </form>
+    <div class="create-container ps-3">
+      <a href="/categories/create" class="btn btn-outline-success create-btn "><b>+</b> Add new category</a>
+    </div>
+
   </div>
+
+
+
+
 
   <div class="categories-wrapper row row-cols-1 row-cols-md-3 row-cols-lg-5 g-3 g-lg-4 mb-5">
     {{#each categories}}

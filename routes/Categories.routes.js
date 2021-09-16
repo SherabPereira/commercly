@@ -39,6 +39,21 @@ router.get('/:id', (req, res, next) => {
     .catch((err) => next(err))
 })
 
+//POST Search products by name or brand
+router.post('/search', async (req, res, next) => {
+  const { query } = req.body
+  try {
+    const categories = await Category.find({
+      name: { $regex: query, $options: 'i' },
+    })
+    res.render('categories/categories-list', {
+      categories,
+    })
+  } catch (err) {
+    next(err)
+  }
+})
+
 //POST delete category // Check if category products is empty, otherwise need warning to delete the products associated first
 router.post('/delete/:id', (req, res, next) => {
   const { id } = req.params
