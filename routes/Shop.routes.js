@@ -51,4 +51,9 @@ router.post('/search', async (req, res, next) => {
   }
 })
 
+//POST Find products by name or brand
+router.get('/cart', async (req, res, next) => {
+  res.render('shop/cart')
+})
+
 module.exports = router

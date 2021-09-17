@@ -1,1 +1,28 @@
-<h1>Cart</h1>
+<section id="cart" class="container">
+    <h6>Your Cart</h6>
+    <div class="custom_scroll" id="side-cart-scroll">
+        <div>
+            <ul>
+                <li class="item">
+
+                    <div class="quantity">{{quantity}}</div>
+                    <div>
+                        <h5 class="cart_item_line">
+                            <a href="">{{name}}Name</a>
+                        </h5>
+                        <span class="item-description">{{description}}Description </span>
+                    </div>
+                    <div class="item-price-wrapper">
+                        <h5 class="item-price">{{price}}25€</h5>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="">
+        <div class="subtotal-item">
+            <span class="items-subtotal">Subtotal {{price }} {{!-- price * total items --}} </span>
+        </div>
+        <a href="/checkout/" class="">Checkout</a>
+    </div>
+</section>
