@@ -27,25 +27,40 @@ router.get('/create', isAdmin, (_, res, next) => {
 })
 
 //POST create product
-router.post('/create', isAdmin, upload.single('image'), (req, res, next) => {
-  const { name, price, description, category, brand } = req.body
+router.post(
+  '/create',
+  isAdmin,
+  upload.single('image'),
+  async (req, res, next) => {
+    const { name, price, description, category, brand } = req.body
 
-  const image = {
-    originalName: req.file.originalname,
-    path: `/uploads/${req.file.filename}`,
-  }
-
-  //req.file.mimetype  image/jpg  image/png
-
-  Product.create({ name, price, description, category, brand, image })
-    .then(async (product) => {
-      await Category.findByIdAndUpdate(category, {
+    let image
+    //req.file.mimetype  image/jpg  image/png
+    try {
+      if (req.file) {
+        image = {
+          originalName: req.file.originalname,
+          path: `/uploads/${req.file.filename}`,
+        }
+      }
+      const product = await Product.create({
+        name,
+        price,
+        description,
+        category,
+        brand,
+        image,
+      })
+      await Category.findByIdAndUpdate(product.category, {
         $push: { products: { _id: product._id } },
       })
-    })
-    .then(res.redirect('/products'))
-    .catch((err) => next(err))
-})
+
+      res.redirect('/products')
+    } catch (err) {
+      next(err)
+    }
+  },
+)
 
 //GET Find product
 router.get('/:id', (req, res, next) => {
@@ -95,12 +110,25 @@ router.post('/search', async (req, res, next) => {
 })
 
 //POST delete product
-router.post('/delete/:id', isAdmin, (req, res, next) => {
+router.post('/delete/:id', isAdmin, async (req, res, next) => {
   const { id } = req.params
 
-  Product.findByIdAndRemove(id)
-    .then(res.redirect('/products'))
-    .catch((err) => next(err))
+  try {
+    const product = await Product.findById(id)
+
+    if (product.image.path) {
+      const path = __dirname + '/../public' + product.image.path
+      fs.unlink(path, (err) => {
+        if (err) next(err)
+      })
+    }
+
+    await Product.deleteOne(product)
+
+    res.redirect('/products')
+  } catch (err) {
+    next(err)
+  }
 })
 
 //GET Edit product
@@ -124,29 +152,38 @@ router.post(
     const { name, price, description, category, brand } = req.body
 
     const product = await Product.findById(id)
-    const path = __dirname + '/../public' + product.image.path
 
     try {
-      fs.unlink(path, (err) => {
-        if (err) {
-          next(err)
+      if (req.file) {
+        if (product.image.path) {
+          const path = __dirname + '/../public' + product.image.path
+          fs.unlink(path, (err) => {
+            if (err) {
+              next(err)
+            }
+          })
         }
-      })
-
-      const image = {
-        originalName: req.file.originalname,
-        path: `/uploads/${req.file.filename}`,
+        const image = {
+          originalName: req.file.originalname,
+          path: `/uploads/${req.file.filename}`,
+        }
+        await Product.findByIdAndUpdate(id, {
+          name,
+          price,
+          description,
+          category,
+          brand,
+          image,
+        })
+      } else {
+        await Product.findByIdAndUpdate(id, {
+          name,
+          price,
+          description,
+          category,
+          brand,
+        })
       }
-
-      await Product.findByIdAndUpdate(id, {
-        name,
-        price,
-        description,
-        category,
-        brand,
-        image,
-      })
-
       res.redirect(`/products/`)
     } catch (err) {
       next(err)
