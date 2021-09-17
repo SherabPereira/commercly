@@ -33,7 +33,6 @@ router.get('/:id', (req, res, next) => {
   Category.findById(id)
     .populate('products')
     .then((category) => {
-      // console.log(category)
       res.render('categories/category-details', category)
     })
     .catch((err) => next(err))

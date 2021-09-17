@@ -79,7 +79,7 @@ router.post('/signup', (req, res) => {
         else return res.redirect('/customer')
       })
       .catch((error) => {
-        console.log(error.message)
+ 
         if (error instanceof mongoose.Error.ValidationError) {
           return res
             .status(400)
