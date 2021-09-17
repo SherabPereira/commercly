@@ -1,1 +1,29 @@
-<h1>Product details</h1>
+<section id="product-details" class="container d-flex justify-content-center">
+    <div class="product-card">
+        <div class="col-md-12">
+            <div class="product-detail card">
+                <div class="">
+                    <img src="{{image.path}}" alt="{{name}}" class="w-100">
+                </div>
+                <div class="product-body text-center">
+                    <h3 class="heading heading-5 strong-600 text-capitalize">
+                        {{name}}
+                    </h3>
+                    <p class="product-description">
+                        {{description}}
+                    </p>
+                    <div class="product-buttons mt-4">
+                        <div class="row align-items-center">
+                            <button type="button" class="btn btn-outline-success cart-btn">
+                                <i class="fa fa-shopping-cart"></i>&emsp;Add to cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{{!-- --}}
