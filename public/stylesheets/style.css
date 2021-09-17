@@ -405,6 +405,167 @@ header {
   border: 3px solid #198754;
 }
 
+/*Cart*/
+
+#cart {
+  padding: 4rem 0;
+}
+
+#cart .title {
+  margin-bottom: 5vh
+}
+
+#cart .card {
+  margin: auto;
+  max-width: 950px;
+  width: 90%;
+  box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 0;
+  border: transparent
+}
+
+@media(max-width:767px) {
+  #cart .card {
+    margin: 3vh auto
+  }
+}
+
+#cart .card .cart {
+  background-color: #fff;
+  padding: 4vh 5vh;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+
+@media(max-width:767px) {
+  #cart .card .cart {
+    padding: 4vh;
+    border-bottom-left-radius: unset;
+    border-top-right-radius: 0;
+  }
+}
+
+#cart .card .summary {
+  background-color: #ddd;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  padding: 4vh;
+  color: rgb(65, 65, 65)
+}
+
+@media(max-width:767px) {
+  #cart .card .summary {
+    border-top-right-radius: unset;
+    border-bottom-left-radius: 0
+  }
+}
+
+#cart .card .summary .col-2 {
+  padding: 0
+}
+
+#cart .card .summary .col-10 {
+  padding: 0
+}
+
+#cart .card .row {
+  margin: 0
+}
+
+#cart .card .title b {
+  font-size: 1.5rem
+}
+
+#cart .card .items-list  {
+  margin: 0;
+  padding: 2vh 0;
+  width: 100%
+}
+
+#cart .card .col-2, #cart .card .col {
+  padding: 0 1vh
+}
+
+#cart .card  a {
+  padding: 0 1vh
+}
+
+#cart .card .close {
+  margin-left: auto;
+  font-size: 0.7rem
+}
+
+#cart .card img {
+  width: 3.5rem
+}
+
+#cart .card .back-to-shop {
+  margin-top: 4.5rem
+}
+
+#cart .card h5 {
+  margin-top: 4vh
+}
+
+#cart .card hr {
+  margin-top: 1.25rem
+}
+
+#cart .card form {
+  padding: 2vh 0
+}
+
+#cart .card select {
+  border: 1px solid rgba(0, 0, 0, 0.137);
+  margin-bottom: 4vh;
+  outline: none;
+  width: 100%;
+  background-color: rgb(247, 247, 247)
+}
+
+#cart .card input {
+  border: 1px solid rgba(0, 0, 0, 0.137);
+  padding: 1vh;
+  margin-bottom: 4vh;
+  outline: none;
+  width: 100%;
+  background-color: rgb(247, 247, 247)
+}
+
+#cart .card input:focus::input-placeholder {
+  color: transparent
+}
+
+#cart .card .btn {
+
+  width: 100%;
+  margin-top: 4vh;
+  padding: 1vh;
+  border-radius: 0
+}
+
+#cart .card .btn:focus {
+  box-shadow: none;
+  outline: none;
+  box-shadow: none;
+  color: white;
+  box-shadow: none;
+  user-select: none;
+  transition: none
+}
+
+#cart .card .btn:hover {
+  color: white
+}
+
+#cart .card a {
+  color: black
+}
+
+#cart .card a:hover {
+  color: black;
+  text-decoration: none
+}
 
 /*Footer*/
 

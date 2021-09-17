@@ -2,48 +2,30 @@
     <div class="card">
         <div class="row">
             <div class="col-md-8 cart">
-                <div class="title">
+                <div class="title border-bottom">
                     <div class="row">
                         <div class="col">
                             <h4><b>Shopping Cart</b></h4>
                         </div>
-                        <div class="col align-self-center text-right text-muted">3 items</div>
-                    </div>
-                </div>
-                <div class="row border-top border-bottom">
-                    <div class="row main align-items-center">
-                        <div class="col-2"><img class="img-fluid" src="https://i.imgur.com/1GrakTl.jpg"></div>
-                        <div class="col">
-                            <div class="row text-muted">Shirt</div>
-                            <div class="row">Cotton T-shirt</div>
-                        </div>
-                        <div class="col"> <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a> </div>
-                        <div class="col">&euro; 44.00 <span class="close">&#10005;</span></div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="row main align-items-center">
-                        <div class="col-2"><img class="img-fluid" src="https://i.imgur.com/ba3tvGm.jpg"></div>
-                        <div class="col">
-                            <div class="row text-muted">Shirt</div>
-                            <div class="row">Cotton T-shirt</div>
-                        </div>
-                        <div class="col"> <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a> </div>
-                        <div class="col">&euro; 44.00 <span class="close">&#10005;</span></div>
-                    </div>
-                </div>
-                <div class="row border-top border-bottom">
-                    <div class="row main align-items-center">
-                        <div class="col-2"><img class="img-fluid" src="https://i.imgur.com/pHQ3xT3.jpg"></div>
-                        <div class="col">
-                            <div class="row text-muted">Shirt</div>
-                            <div class="row">Cotton T-shirt</div>
-                        </div>
-                        <div class="col"> <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a> </div>
-                        <div class="col">&euro; 44.00 <span class="close">&#10005;</span></div>
+                        <div class="col align-self-center text-right text-muted">{{totalSameItems}}</div>
                     </div>
                 </div>
 
+                <div class="row border-bottom">
+                    <div class="row items-list align-items-center">
+                        <div class="col-2">
+                            <img class="img-fluid" src="{{product.image.path}}">
+                        </div>
+                        <div class="col">
+                            <div class="row text-muted">{{name}}</div>
+                            <div class="row">{{description}}</div>
+                        </div>
+                        <div class="col"> <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a> </div>
+                        <div class="col"> {{price}} &euro; <span class="close">&#10005;</span></div>
+                    </div>
+                </div>
+
+                <div class="back-to-shop"><a href="#">&leftarrow;</a><span class="text-muted">Back to shop</span></div>
             </div>
             <div class="col-md-4 summary">
                 <div>
@@ -51,70 +33,21 @@
                 </div>
                 <hr>
                 <div class="row">
-                    <div class="col" style="padding-left:0;">ITEMS 3</div>
-                    <div class="col text-right">&euro; 132.00</div>
+                    <div class="col" style="padding-left:0;">{{totalSameItem}} </div>
+                    <div class="col text-right">{{totalPriceSameItem}}&euro;</div>
                 </div>
                 <form>
                     <p>SHIPPING</p> <select>
-                        <option class="text-muted">Standard-Delivery- &euro;5.00</option>
+                        <option class="text-muted">Standard Delivery - 4.00 &euro;</option>
+                        <option class="text-muted">Next Day Delivery - 8.00 &euro;</option>
                     </select>
-                    <p>GIVE CODE</p> <input id="code" placeholder="Enter your code">
                 </form>
                 <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
                     <div class="col">TOTAL PRICE</div>
-                    <div class="col text-right">&euro; 137.00</div>
-                </div> <button class="btn">CHECKOUT</button>
+                    <div class="col text-right"> {{totalPriceItemsInCart}} &euro;</div>
+                </div> <button class="btn btn-outline-secondary border-3">CHECKOUT</button>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-3 radio-group">
-                <div class="row d-flex px-3 radio"> <img class="pay" src="https://i.imgur.com/WIAP9Ku.jpg">
-                    <p class="my-auto">Credit Card</p>
-                </div>
-                <div class="row d-flex px-3 radio gray"> <img class="pay" src="https://i.imgur.com/OdxcctP.jpg">
-                    <p class="my-auto">Debit Card</p>
-                </div>
-                <div class="row d-flex px-3 radio gray mb-3"> <img class="pay" src="https://i.imgur.com/cMk1MtK.jpg">
-                    <p class="my-auto">PayPal</p>
-                </div>
-            </div>
-            <div class="col-lg-5">
-                <div class="row px-2">
-                    <div class="form-group col-md-6"> <label class="form-control-label">Name on Card</label>
-                        <input type="text" id="cname" name="cname" placeholder="Johnny Doe">
-                    </div>
-                    <div class="form-group col-md-6"> <label class="form-control-label">Card Number</label>
-                        <input type="text" id="cnum" name="cnum" placeholder="1111 2222 3333 4444">
-                    </div>
-                </div>
-                <div class="row px-2">
-                    <div class="form-group col-md-6"> <label class="form-control-label">Expiration
-                            Date</label>
-                        <input type="text" id="exp" name="exp" placeholder="MM/YYYY">
-                    </div>
-                    <div class="form-group col-md-6"> <label class="form-control-label">CVV</label> <input type="text"
-                            id="cvv" name="cvv" placeholder="***"> </div>
-                </div>
-            </div>
-            <div class="col-lg-4 mt-2">
-                <div class="row d-flex justify-content-between px-4">
-                    <p class="mb-1 text-left">Subtotal</p>
-                    <h6 class="mb-1 text-right">$23.49</h6>
-                </div>
-                <div class="row d-flex justify-content-between px-4">
-                    <p class="mb-1 text-left">Shipping</p>
-                    <h6 class="mb-1 text-right">$2.99</h6>
-                </div>
-                <div class="row d-flex justify-content-between px-4" id="tax">
-                    <p class="mb-1 text-left">Total (tax included)</p>
-                    <h6 class="mb-1 text-right">$26.48</h6>
-                </div> <button class="btn-block btn-blue"> <span> <span id="checkout">Checkout</span> <span
-                            id="check-amt">$26.48</span> </span> </button>
-            </div>
-        </div>
-        <div class="back-to-shop"><a href="#">&leftarrow;</a><span class="text-muted">Back to shop</span>
-        </div>
-
     </div>
 
 </section>
