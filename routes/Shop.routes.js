@@ -2,6 +2,7 @@ const router = require('express').Router()
 
 const Category = require('../models/Category.model')
 const Product = require('../models/Product.model')
+const Cart = require('../models/Cart.model')
 
 //GET Shop products list
 router.get('/', async (req, res, next) => {
@@ -53,7 +54,57 @@ router.post('/search', async (req, res, next) => {
 
 //POST Find products by name or brand
 router.get('/cart', async (req, res, next) => {
-  res.render('shop/cart')
+  const cart = await Cart.findById(req.session.currentCart._id).populate(
+    'products',
+  )
+
+  let itemsCounter = {}
+  let productsArray = []
+  let totalItems = 0
+  let totalPrice = 0
+
+  cart.products.forEach((obj) => {
+    var key = JSON.stringify(obj)
+    itemsCounter[key] = (itemsCounter[key] || 0) + 1
+  })
+
+  itemsCounter = Object.entries(itemsCounter)
+
+  for (const item of itemsCounter) {
+    const product = JSON.parse(item[0])
+    const quantity = item[1]
+    const totalLine = quantity * product.price
+    totalItems += item[1]
+    totalPrice += totalLine
+
+    productsArray.push({
+      product: product,
+      quantity: quantity,
+      totalLine: totalLine,
+    })
+  }
+
+  res.render('shop/cart', {
+    products: productsArray,
+    totalItems: totalItems,
+    totalPrice: totalPrice,
+  })
+})
+
+//GET add product to cart
+router.post('/add-item', async (req, res, next) => {
+  const { productId } = req.body
+  const cartId = req.session.currentCart
+
+  await Cart.findByIdAndUpdate(cartId, {
+    $push: { products: { _id: productId } },
+  })
+
+  //need to refactor
+  const cart = await Cart.findById(cartId)
+  req.session.totalItems = cart.products.length
+
+  res.redirect(`/products/${productId}`)
 })
 
 module.exports = router

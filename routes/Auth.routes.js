@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const bcryptjs = require('bcryptjs')
 const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard')
 const User = require('../models/User.model')
+const Cart = require('../models/Cart.model')
 
 const saltRounds = 10
 
@@ -98,7 +99,6 @@ router.post('/signup', (req, res) => {
 })
 
 router.get('/login', isLoggedOut, (req, res) => {
-  console.log(isLoggedOut)
   res.render('auth/login')
 })
 
@@ -130,16 +130,23 @@ router.post('/login', (req, res, next) => {
       }
 
       // If user is found based on the email, check if the in putted password matches the one saved in the database
-      bcryptjs.compare(password, user.password).then((isSamePassword) => {
+      bcryptjs.compare(password, user.password).then(async (isSamePassword) => {
         if (!isSamePassword) {
           return res
             .status(400)
             .render('auth/login', { errorMessage: 'Wrong credentials.' })
         }
-        /*debug*/
+
         req.session.currentUser = user
 
-        console.log(req.session.currentUser, 'login')
+        //Check if user has cart
+        let cart = await Cart.findOne({ customer: { $eq: user.id } })
+        //Else create it
+        if (!cart) {
+          cart = await Cart.create({ customer: user.id })
+        }
+
+        req.session.currentCart = cart
 
         //If user is admin redirect to admin panel else to user panel.
         if (user.isAdmin) return res.redirect('/admin')

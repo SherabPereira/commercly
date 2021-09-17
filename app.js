@@ -50,6 +50,8 @@ const capitalized = (string) =>
 
 app.locals.siteTitle = `${capitalized(projectName)}`
 
+
+
 // 👇 Start handling routes here
 const index = require('./routes/index')
 app.use('/', index)
