@@ -1,9 +1,16 @@
 const router = require('express').Router()
 const { isAdmin } = require('../middleware/route-guard')
 
-//GET List categories
-router.get('/', isAdmin, (_, res, next) => {
-  res.render('account/admin/dashboard')
+//GET Admin dashboard
+router.get('/', isAdmin, (req, res, next) => {
+
+  console.log(req.session.currentUser['username'])
+
+
+
+  res.render('account/admin/dashboard', {
+    username: req.session.currentUser.username,
+  })
 })
 
 module.exports = router

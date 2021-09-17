@@ -47,15 +47,22 @@ router.post('/signup', (req, res) => {
       .then((salt) => bcryptjs.hash(password, salt)) /*debug*/
       .then((hashedPassword) => {
         // Create a user and save it in the database
+
+        //Take the first part of the email to use as predefined username
+
+        let username = email.substring(0, email.indexOf('@'))
+        username = username.charAt(0).toUpperCase() + username.slice(1)
+
         if (token === process.env.ADMIN_TOKEN) {
-          console.log('entered')
           return User.create({
+            username,
             email,
             password: hashedPassword,
             isAdmin: true,
           })
         } else {
           return User.create({
+            username,
             email,
             password: hashedPassword,
             isAdmin: false,
@@ -63,7 +70,7 @@ router.post('/signup', (req, res) => {
         }
       })
       .then((user) => {
-        // Bind the user to the session object 
+        // Bind the user to the session object
         req.session.currentUser = user
 
         //If user is admin redirect to admin panel else to user panel.
