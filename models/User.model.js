@@ -12,11 +12,15 @@ module.exports = model(
         type: String,
         minlength: 2,
       },
-      address: {
-        country: String,
-        street: String,
-        city: String,
-        zip: Number,
+      addresses: {
+        billing: {
+          type: Schema.Types.ObjectId,
+          ref: 'Address',
+        },
+        shipping: {
+          type: Schema.Types.ObjectId,
+          ref: 'Address',
+        },
       },
       phone: String,
       username: String,

@@ -335,33 +335,52 @@ header {
   border: 3px solid #198754;
 }
 
-/* User dashboard*/
+/* Dashboard*/
 
-#user-dashboard .dashboard-info-wrapper {
-  padding: 9rem 25rem;
+.dashboard-wrapper {
+  padding: 8rem 0;
+  max-width: 62.5rem;
+  margin: 0 auto;
 }
 
-#user-dashboard .dashboard-info-wrapper p {
-  font-size: 1.3rem;
+.dashboard-wrapper p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
 }
 
-#user-dashboard .dashboard-info-wrapper a {
+.dashboard-wrapper a {
   text-decoration: none;
 }
 
-/* Admin dashboard*/
-
-#admin-dashboard .dashboard-info-wrapper {
-  padding: 9rem 25rem;
+.address-title h3 {
+  margin-bottom: 2rem;
 }
 
-#admin-dashboard .dashboard-info-wrapper p {
-  font-size: 1.3rem;
+/*User Addresses forms*/
+
+#address-form {
+  padding: 4rem 0;
 }
 
-#admin-dashboard .dashboard-info-wrapper a {
-  text-decoration: none;
+
+#address-form .btn{
+  font-size: 1rem;
+  background-color: white;
+  border: 3px solid;
+  border-radius: 0rem;
 }
+
+#address-form .btn:hover{
+  background-color: #6c757d;
+  border: 3px solid #6c757d;
+}
+
+#address-form h2, #address-form h2 {
+  font-size: 3rem;
+  margin-bottom: 2rem;
+}
+
+
 
 /*Product details*/
 
@@ -476,7 +495,7 @@ header {
   font-size: 1.5rem
 }
 
-#cart .card .items-list  {
+#cart .card .items-list {
   margin: 0;
   padding: 2vh 0;
   width: 100%
@@ -486,7 +505,7 @@ header {
   padding: 0 1vh
 }
 
-#cart .card  a {
+#cart .card a {
   padding: 0 1vh
 }
 
@@ -537,7 +556,6 @@ header {
 }
 
 #cart .card .btn {
-
   width: 100%;
   margin-top: 4vh;
   padding: 1vh;

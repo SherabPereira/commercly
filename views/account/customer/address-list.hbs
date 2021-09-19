@@ -1,0 +1,77 @@
+<section id="customer-addresses" class="container">
+    <div class="border-bottom customer-menu">
+        <div class="row p-5">
+            <div class="col-12 d-flex flex-row justify-content-center">
+                <div class="px-3 text-muted">
+                    <a href="/customer" class="text-reset text-decoration-none text-uppercase  ">Dashboard</a>
+                </div>
+                <div class="px-3 text-muted">
+                    <a href="#" class="text-reset text-decoration-none text-uppercase">Orders</a>
+                </div>
+                <div class="px-3 text-muted">
+                    <a href="/customer/address-list"
+                        class="text-reset text-decoration-none text-uppercase border-3 border-bottom fw-bold">Addresses</a>
+                </div>
+                <div class="px-3 text-muted">
+                    <a href="#" class="text-reset text-decoration-none text-uppercase">Account details</a>
+                </div>
+                <div class="px-3 text-muted">
+                    <a href="/auth/logout" class="text-reset text-decoration-none text-uppercase">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="dashboard-wrapper d-flex justify-content-center text-muted ">
+        <div class="col-12 col-md-10 col-lg-8 ">
+            <p class="">The following addresses will be used on the checkout page by default.</p>
+            <div class="addresses row d-flex justify-content-between">
+                <div class="billing-address col-sm-12 col-md-5">
+                    <div class="address-title">
+                        <h3>Billing address</h3>
+                        {{#if billing}}
+                        <a href="/customer/edit-address/billing/" class="add">Edit</a>
+                        {{else}}
+                        <a href="/customer/create-address/billing/" class="add">Add</a>
+                        {{/if }}
+                    </div>
+
+                    <address>
+                        {{#if billing}}
+                        {{billing.firstName}} {{billing.lastName}} <br>
+                        {{billing.street}} <br>
+                        {{billing.zip}} {{billing.city}} <br>
+                        {{billing.province}} <br>
+                        {{billing.country}}
+                        {{else}}
+                        You have not set up this type of address yet.
+                        {{/if }}
+                    </address>
+                </div>
+
+                <div class="shipping-address col-sm-12 col-md-5 ">
+                    <div class="address-title">
+                        <h3>Shipping address</h3>
+                        {{#if shipping}}
+                        <a href="/customer/edit-address/shipping/" class="add">Edit</a>
+                        {{else}}
+                        <a href="/customer/create-address/shipping/" class="add">Add</a>
+                        {{/if }}
+                    </div>
+                    <address>
+                        {{#if shipping}}
+                        {{shipping.firstName}} {{shipping.lastName}} <br>
+                        {{shipping.street}} <br>
+                        {{shipping.zip}} {{shipping.city}} <br>
+                        {{shipping.province}} <br>
+                        {{shipping.country}}
+                        {{else}}
+                        You have not set up this type of address yet.
+                        {{/if }}
+                    </address>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>

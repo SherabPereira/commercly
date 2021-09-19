@@ -150,7 +150,7 @@ router.post('/login', (req, res, next) => {
         }
 
         req.session.currentCartId = cart._id
-        req.session.totalItemsCart = cart.products.length;
+        req.session.totalItemsCart = cart.products.length
 
         //If user is admin redirect to admin panel else to user panel.
         if (user.isAdmin) return res.redirect('/admin')

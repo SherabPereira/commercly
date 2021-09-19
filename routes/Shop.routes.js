@@ -4,6 +4,7 @@ const Product = require('../models/Product.model')
 const Cart = require('../models/Cart.model')
 const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard')
 
+
 //GET Shop products list
 router.get('/', async (req, res, next) => {
   try {

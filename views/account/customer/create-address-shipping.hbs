@@ -1,0 +1,52 @@
+<section class="container d-flex flex-column justify-content-center align-items-center" id="address-form">
+    <div class="address-form-wrapper col-sm-12 col-md-4">
+        <h2 class="text-center text-muted text-uppercase">Shipping Address</h2>
+
+        <div class="address-form-container d-flex justify-content-center text-muted">
+
+            <form method="post" action="/customer/create-address/shipping" class="d-flex flex-column w-100">
+
+
+                <label for="firstName">First name *</label>
+                <input type="text" id="firstName" name="firstName" />
+
+                <label for="lastName">Last name *</label>
+                <input type="text" id="lastName" name="lastName" />
+
+                <label for="company">Company (optional)</label>
+                <input type="text" id="company" name="company" />
+
+                <label for="country">Country / Region *</label>
+                <input type="text" id="country" name="country" />
+
+                <label for="address">Street address *</label>
+                <input type="text" id="address" name="street" />
+
+                <label for="zip">Postcode / ZIP *</label>
+                <input type="number" id="zip" name="zip" />
+
+                <label for="city">Town / City *</label>
+                <input type="text" id="city" name="city" />
+
+                <label for="province">Province *</label>
+                <input type="text" id="province" name="province" />
+
+                <label for="phone">Phone *</label>
+                <input type="text" id="phone" name="phone" />
+
+                <label for="email">Email address *</label>
+                <input type="email" id="email" name="email" />
+
+
+                <button type="submit" class="btn btn-outline-secondary py-2 px-5 mt-4">Submit</button>
+
+                <div class="error mt-3">
+                    {{#if errorMessage}}
+                    <p>{{errorMessage}}</p>
+                    {{/if}}
+                </div>
+
+            </form>
+
+        </div>
+</section>
