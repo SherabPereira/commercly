@@ -70,16 +70,19 @@ router.post('/signup', (req, res) => {
           })
         }
       })
-      .then((user) => {
+      .then(async (user) => {
         // Bind the user to the session object
         req.session.currentUser = user
+
+        //Create a cart for the costumer
+        const cart = await Cart.create({ customer: user.id })
+        req.session.currentCartId = cart._id
 
         //If user is admin redirect to admin panel else to user panel.
         if (user.isAdmin) return res.redirect('/admin')
         else return res.redirect('/customer')
       })
       .catch((error) => {
- 
         if (error instanceof mongoose.Error.ValidationError) {
           return res
             .status(400)
@@ -146,7 +149,7 @@ router.post('/login', (req, res, next) => {
           cart = await Cart.create({ customer: user.id })
         }
 
-        req.session.currentCart = cart
+        req.session.currentCartId = cart._id
 
         //If user is admin redirect to admin panel else to user panel.
         if (user.isAdmin) return res.redirect('/admin')

@@ -1,8 +1,8 @@
 const router = require('express').Router()
-
 const Category = require('../models/Category.model')
 const Product = require('../models/Product.model')
 const Cart = require('../models/Cart.model')
+const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard')
 
 //GET Shop products list
 router.get('/', async (req, res, next) => {
@@ -53,10 +53,12 @@ router.post('/search', async (req, res, next) => {
 })
 
 //POST Find products by name or brand
-router.get('/cart', async (req, res, next) => {
-  const cart = await Cart.findById(req.session.currentCart._id).populate(
+router.get('/cart', isLoggedIn, async (req, res, next) => {
+  const cart = await Cart.findById(req.session.currentCartId).populate(
     'products',
   )
+
+  console.log()
 
   let itemsCounter = {}
   let productsArray = []
@@ -92,17 +94,22 @@ router.get('/cart', async (req, res, next) => {
 })
 
 //GET add product to cart
-router.post('/add-item', async (req, res, next) => {
+router.post('/add-item', isLoggedIn, async (req, res, next) => {
   const { productId } = req.body
-  const cartId = req.session.currentCart
+  const cartId = req.session.currentCartId
 
-  await Cart.findByIdAndUpdate(cartId, {
-    $push: { products: { _id: productId } },
-  })
+  /**/
 
-  //need to refactor
-  const cart = await Cart.findById(cartId)
-  req.session.totalItems = cart.products.length
+  const cart = await Cart.findOneAndUpdate(
+    { _id: cartId },
+    {
+      $push: { products: { _id: productId } },
+    },
+    { new: true },
+  )
+
+  console.log(cart)
+  // req.session.totalItems = cart.products.length
 
   res.redirect(`/products/${productId}`)
 })
