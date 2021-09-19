@@ -38,6 +38,10 @@ hbs.registerHelper('ifCond', function (v1, operator, v2, options) {
   }
 })
 
+hbs.registerHelper('defaultValue', function (a, b) {
+  return a ? a : b
+})
+
 const app = express()
 
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
@@ -49,8 +53,6 @@ const capitalized = (string) =>
   string[0].toUpperCase() + string.slice(1).toLowerCase()
 
 app.locals.siteTitle = `${capitalized(projectName)}`
-
-
 
 // 👇 Start handling routes here
 const index = require('./routes/index')

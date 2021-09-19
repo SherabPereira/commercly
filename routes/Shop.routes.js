@@ -58,15 +58,13 @@ router.get('/cart', isLoggedIn, async (req, res, next) => {
     'products',
   )
 
-  console.log()
-
   let itemsCounter = {}
   let productsArray = []
   let totalItems = 0
   let totalPrice = 0
 
   cart.products.forEach((obj) => {
-    var key = JSON.stringify(obj)
+    const key = JSON.stringify(obj)
     itemsCounter[key] = (itemsCounter[key] || 0) + 1
   })
 
@@ -98,8 +96,6 @@ router.post('/add-item', isLoggedIn, async (req, res, next) => {
   const { productId } = req.body
   const cartId = req.session.currentCartId
 
-  /**/
-
   const cart = await Cart.findOneAndUpdate(
     { _id: cartId },
     {
@@ -107,7 +103,7 @@ router.post('/add-item', isLoggedIn, async (req, res, next) => {
     },
     { new: true },
   )
-
+  req.session.totalItemsCart = cart.products.length
   console.log(cart)
   // req.session.totalItems = cart.products.length
 
