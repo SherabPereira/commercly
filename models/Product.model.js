@@ -15,6 +15,7 @@ module.exports = model(
         required: true,
         minlength: 0,
       },
+      summary: String,
       description: {
         type: String,
         required: true,

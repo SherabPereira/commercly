@@ -31,6 +31,48 @@
                 {{/each}}
 
                 <div class="back-to-shop"><a href="#">&leftarrow;</a><span class="text-muted">Back to shop</span></div>
+                <div>
+                    <div class="row border-bottom  mt-5">
+                        <h4><b>Billing address</b> </h4>
+                    </div>
+                    <form action="" method="post">
+                        <input type="hidden" id="id" name="id" value="{{billing._id}}" />
+
+                        <div>
+                            <label for="firstName">First name *</label>
+                            <input type="text" id="firstName" name="firstName" value="{{billing.firstName}}" />
+                        </div>
+
+                        <label for="lastName">Last name *</label>
+                        <input type="text" id="lastName" name="lastName" value="{{billing.lastName}}" />
+
+                        <label for="company">Company (optional)</label>
+                        <input type="text" id="company" name="company" value="{{billing.company}}" />
+
+                        <label for="country">Country / Region *</label>
+                        <input type="text" id="country" name="country" value="{{billing.country}}" />
+
+                        <label for="street">Street address *</label>
+                        <input type="text" id="street" name="street" value="{{billing.street}}" />
+
+                        <label for="zip">Postcode / ZIP *</label>
+                        <input type="number" id="zip" name="zip" value="{{billing.zip}}" />
+
+                        <label for="city">Town / City *</label>
+                        <input type="text" id="city" name="city" value="{{billing.city}}" />
+
+                        <label for="province">Province *</label>
+                        <input type="text" id="province" name="province" value="{{billing.province}}" />
+
+                        <label for="phone">Phone *</label>
+                        <input type="text" id="phone" name="phone" value="{{billing.phone}}" />
+
+                        <label for="email">Email address *</label>
+                        <input type="email" id="email" name="email" value="{{billing.email}}" />
+
+                        <button type="submit" class="btn btn-outline-secondary border-3">CHECKOUT</button>
+                    </form>
+                </div>
             </div>
             <div class="col-md-4 summary">
                 <div>
@@ -52,9 +94,9 @@
                     <div class="col">TOTAL PRICE</div>
                     <div class="col text-right"> {{totalPrice}} &euro;</div>
                 </div>
-                <button class="btn btn-outline-secondary border-3">CHECKOUT</button>
             </div>
         </div>
+
     </div>
 
 </section>

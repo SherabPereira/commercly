@@ -1,9 +1,9 @@
 const router = require('express').Router()
+const User = require('../models/User.model')
 const Category = require('../models/Category.model')
 const Product = require('../models/Product.model')
 const Cart = require('../models/Cart.model')
 const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard')
-
 
 //GET Shop products list
 router.get('/', async (req, res, next) => {
@@ -55,6 +55,12 @@ router.post('/search', async (req, res, next) => {
 
 //POST Find products by name or brand
 router.get('/cart', isLoggedIn, async (req, res, next) => {
+  const userId = req.session.currentUser._id
+
+  const user = await User.findById(userId).populate(
+    'addresses.billing addresses.shipping',
+  )
+
   const cart = await Cart.findById(req.session.currentCartId).populate(
     'products',
   )
@@ -85,10 +91,13 @@ router.get('/cart', isLoggedIn, async (req, res, next) => {
     })
   }
 
+  console.log(user)
+
   res.render('shop/cart', {
     products: productsArray,
     totalItems: totalItems,
     totalPrice: totalPrice,
+    billing: user.addresses.billing,
   })
 })
 
