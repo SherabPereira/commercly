@@ -4,6 +4,7 @@ const Category = require('../models/Category.model')
 const Product = require('../models/Product.model')
 const Cart = require('../models/Cart.model')
 const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard')
+const CategoryModel = require('../models/Category.model')
 
 //GET Shop products list
 router.get('/', async (req, res, next) => {
@@ -91,8 +92,6 @@ router.get('/cart', isLoggedIn, async (req, res, next) => {
     })
   }
 
-  console.log(user)
-
   res.render('shop/cart', {
     products: productsArray,
     totalItems: totalItems,
@@ -101,7 +100,7 @@ router.get('/cart', isLoggedIn, async (req, res, next) => {
   })
 })
 
-//GET add product to cart
+//POST add product to cart
 router.post('/add-item', isLoggedIn, async (req, res, next) => {
   const { productId } = req.body
   const cartId = req.session.currentCartId
@@ -114,10 +113,77 @@ router.post('/add-item', isLoggedIn, async (req, res, next) => {
     { new: true },
   )
   req.session.totalItemsCart = cart.products.length
-  console.log(cart)
-  // req.session.totalItems = cart.products.length
 
   res.redirect(`/products/${productId}`)
 })
+
+//GET add product to cart
+router.get('/cart/add-item/:productId', isLoggedIn, async (req, res, next) => {
+  const { productId } = req.params
+  const cartId = req.session.currentCartId
+
+  const cart = await Cart.findOneAndUpdate(
+    { _id: cartId },
+    {
+      $push: { products: { _id: productId } },
+    },
+    { new: true },
+  )
+  req.session.totalItemsCart = cart.products.length
+
+  res.redirect(`/shop/cart`)
+})
+
+//GET remove product from cart
+router.get(
+  '/cart/remove-item/:productId',
+  isLoggedIn,
+  async (req, res, next) => {
+    const { productId } = req.params
+    const cartId = req.session.currentCartId
+
+    const cart = await Cart.findById(cartId)
+
+    const prodIndex = cart.products.findIndex(
+      (product) => String(product) === productId,
+    )
+
+    if (prodIndex >= 0) cart.products.splice(prodIndex, 1)
+
+    const modifiedCart = await Cart.findByIdAndUpdate(
+      cartId,
+      {
+        products: cart.products,
+      },
+      { new: true },
+    )
+
+    req.session.totalItemsCart = modifiedCart.products.length
+
+    res.redirect(`/shop/cart`)
+  },
+)
+
+//GET remove product from cart
+router.get(
+  '/cart/remove-line/:productId',
+  isLoggedIn,
+  async (req, res, next) => {
+    const { productId } = req.params
+    const cartId = req.session.currentCartId
+
+    const cart = await Cart.findOneAndUpdate(
+      { _id: cartId },
+      {
+        $pull: { products: { $in: [productId] } },
+      },
+      { new: true },
+    )
+
+    req.session.totalItemsCart = cart.products.length
+
+    res.redirect(`/shop/cart`)
+  },
+)
 
 module.exports = router
